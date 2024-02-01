@@ -31,7 +31,7 @@
 	}, false);
 </script>
 
-<link rel="stylesheet" type="text/css" href="login_style.css">
+<link rel="stylesheet" type="text/css" href="css/login_style.css">
 </head>
 <body>
 	<div class="overlay">
