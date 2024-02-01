@@ -11,14 +11,8 @@ public class indexController {
 	@RequestMapping("/")
 	public ModelAndView login()
 	{
-		ModelAndView loginPage = new ModelAndView("signup");
+		ModelAndView loginPage = new ModelAndView("login");
 		return loginPage;
 	}
 	
-	@RequestMapping("/login")
-	public ModelAndView login2()
-	{
-		ModelAndView loginPage = new ModelAndView("signup");
-		return loginPage;
-	}
 }

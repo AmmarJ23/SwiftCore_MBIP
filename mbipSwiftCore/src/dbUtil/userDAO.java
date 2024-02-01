@@ -2,6 +2,8 @@ package dbUtil;
 
 import javax.sql.DataSource;
 
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
@@ -10,6 +12,19 @@ import com.model.User;
 public class userDAO {
 	
 	JdbcTemplate jdbct = new JdbcTemplate(getDataSource());
+	
+	public boolean loginVerification(User user) {
+		String sql = "select * from users where username = ? AND password = ?";
+		
+		
+		try {
+			User userDB = jdbct.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), user.getUsername(), user.getPassword());
+			return true;
+		} catch (EmptyResultDataAccessException e)
+		{
+			return false;
+		}
+	}
 	
 	public int addUser(User user) {
 		String sql = "INSERT INTO `users` (`username`, `email`, `password`) VALUES (?,?,?)";

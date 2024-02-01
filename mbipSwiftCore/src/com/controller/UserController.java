@@ -16,8 +16,21 @@ public class UserController {
 	@RequestMapping("/login")
 	public ModelAndView userLogin(HttpServletRequest request)
 	{
-		ModelAndView dashboardPage = new ModelAndView("personal_info");
-		dashboardPage.addObject(request.getParameter("name"));
+		
+		User user = new User();
+		user.setUsername(request.getParameter("username"));
+		user.setPassword(request.getParameter("password"));
+		
+		userDAO uDao = new userDAO();
+		
+		boolean valid = uDao.loginVerification(user);
+		
+		String pageName;
+		
+		if(valid == true) {pageName = "dashboard";}
+		else {pageName = "login";}
+		
+		ModelAndView dashboardPage = new ModelAndView(pageName);
 		
 		return dashboardPage;
 	}
