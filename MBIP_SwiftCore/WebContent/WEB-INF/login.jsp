@@ -38,8 +38,8 @@
 		<!-- LOGN IN FORM  -->
 		<form style="background-color: white;" action="${pageContext.request.contextPath}/user/login" method="POST">
 			<div class="con">
-			<header class="head-form">
-					<img src="mbip.jpg" alt="gambar mbip" width="100" height="100" title="mbip">
+			<header class="head-form">				
+			<img src="mbip.jpg" alt="gambar mbip" width="100" height="100" title="mbip">
 					<!--     A welcome message or an explanation of the login form -->
 					<h1>Iskandar Puteri Low Carbon</h1>
 				</header>
@@ -76,7 +76,7 @@
 					<!--      Forgot Password button-->
 					<button class="btn submits frgt-pass">Forgot Password?</button>
 					<!--     Sign Up button -->
-					<button class="btn submits sign-up" style="color: white;">
+					<button class="btn submits sign-up" style="color: white;" type=>
 						Sign in
 					</button>
 					<br> Don't have an account? <a href="signup.jsp"

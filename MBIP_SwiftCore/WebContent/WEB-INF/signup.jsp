@@ -57,9 +57,9 @@
                     <i img src="us2.jpg" alt="gambar usn" title="usn"></i>
                 </span>
                 <!-- User name Input -->
-                <input class="form-input" id="txt-input" type="text" placeholder="username" required>
+                <input class="form-input" id="txt-input" type="text" placeholder="username" name="username" required>
 
-                <input class="form-input" id="email-input" type="text" placeholder="email" required>
+                <input class="form-input" id="email-input" type="text" placeholder="email" name="email" required>
 
                 <br>
 
@@ -83,7 +83,7 @@
 
             <!-- Other buttons -->
             <div class="other">
-                <button style="color: white;">Sign up</button>
+                <button style="color: white;" type="submit">Sign up</button>
                 <!-- End Other the Division -->
             </div>
             <!-- End Container -->

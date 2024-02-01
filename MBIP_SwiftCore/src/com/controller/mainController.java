@@ -11,7 +11,7 @@ public class mainController {
 	@RequestMapping("/")
 	public ModelAndView login()
 	{
-		ModelAndView loginPage = new ModelAndView("login");
+		ModelAndView loginPage = new ModelAndView("signup");
 		return loginPage;
 	}
 }
