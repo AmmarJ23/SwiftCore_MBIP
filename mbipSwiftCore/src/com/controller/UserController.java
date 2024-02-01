@@ -27,7 +27,7 @@ public class UserController {
 		
 		String pageName;
 		
-		if(valid == true) {pageName = "dashboard";}
+		if(valid == true) {pageName = "dashboard-user";}
 		else {pageName = "login";}
 		
 		ModelAndView dashboardPage = new ModelAndView(pageName);
@@ -64,7 +64,7 @@ public class UserController {
 	@RequestMapping("/personalInfo")
 	public ModelAndView userPersonalInfo(HttpServletRequest request)
 	{
-		ModelAndView dashboardPage = new ModelAndView("dashboard");
+		ModelAndView dashboardPage = new ModelAndView("dashboard-user");
 		
 		User user = new User();
 		
