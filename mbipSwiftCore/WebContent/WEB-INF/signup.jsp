@@ -39,7 +39,7 @@
 <body>
 <div class="overlay">
     <!-- LOGIN FORM -->
-    <form style="background-color: white;">
+    <form style="background-color: white;" action="<%=request.getContextPath()%>/user/signup">
         <!-- Container for items in the form -->
         <div class="con">
             <!-- Start header Content -->
@@ -69,9 +69,9 @@
                     <i img src="<%=request.getContextPath()%>/resources/img/pd2.png" alt="gambar pwd" title="pwd"></i>
                 </span>
                 <!-- Password Input -->
-                <input class="form-input" type="password" placeholder="password" id="pwd" name="password" required>
+                <input class="form-input" type="text" placeholder="password" id="pwd" name="password1" required>
 
-                <input class="form-input" type="password" placeholder="confirm password" id="pwd_next" name="password"
+                <input class="form-input" type="password" placeholder="confirm password" id="pwd_next" name="password2"
                        required>
 
                 <!-- Show/hide password -->
