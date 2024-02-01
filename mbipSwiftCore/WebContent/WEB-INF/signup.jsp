@@ -34,7 +34,7 @@
 
     </script>
 
-    <link rel="stylesheet" type="text/css" href="signup_style.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/signup_style.css">
 </head>
 <body>
 <div class="overlay">
@@ -44,7 +44,7 @@
         <div class="con">
             <!-- Start header Content -->
             <header class="head-form">
-                <img src="mbip.jpg" alt="gambar mbip" width="100" height="100" title="mbip">
+                <img src="<%=request.getContextPath()%>/resources/img/mbip.jpg" alt="gambar mbip" width="100" height="100" title="mbip">
                 <!-- A welcome message or an explanation of the login form -->
                 <h1>Iskandar Puteri Low Carbon</h1>
             </header>
@@ -54,7 +54,7 @@
 
                 <!-- User name -->
                 <span class="username">
-                    <i img src="us2.jpg" alt="gambar usn" title="usn"></i>
+                    <i img src="<%=request.getContextPath()%>/resources/img/us2.jpg" alt="gambar usn" title="usn"></i>
                 </span>
                 <!-- User name Input -->
                 <input class="form-input" id="txt-input" type="text" placeholder="username" name="username" required>
@@ -66,7 +66,7 @@
                 <!-- Password -->
 
                 <span class="password">
-                    <i img src="pd2.png" alt="gambar pwd" title="pwd"></i>
+                    <i img src="<%=request.getContextPath()%>/resources/img/pd2.png" alt="gambar pwd" title="pwd"></i>
                 </span>
                 <!-- Password Input -->
                 <input class="form-input" type="password" placeholder="password" id="pwd" name="password" required>
