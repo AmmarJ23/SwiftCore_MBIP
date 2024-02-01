@@ -31,18 +31,15 @@
 	}, false);
 </script>
 
-<link rel="stylesheet" type="text/css" href="css/login_style.css">
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/styles.css'/>"/>
 </head>
 <body>
 	<div class="overlay">
 		<!-- LOGN IN FORM  -->
-		<form style="background-color: white;">
-			<!--   con = Container  for items in the form-->
+		<form style="background-color: white;" action="${pageContext.request.contextPath}/user/login" method="POST">
 			<div class="con">
-				<!--     Start  header Content  -->
-				<header class="head-form">
-					<img src="mbip.jpg" alt="gambar mbip" width="100" height="100"
-						title="mbip">
+			<header class="head-form">
+					<img src="mbip.jpg" alt="gambar mbip" width="100" height="100" title="mbip">
 					<!--     A welcome message or an explanation of the login form -->
 					<h1>Iskandar Puteri Low Carbon</h1>
 				</header>
@@ -81,8 +78,6 @@
 					<!--     Sign Up button -->
 					<button class="btn submits sign-up" style="color: white;">
 						Sign in
-						<!--         Sign Up font icon -->
-						<!-- <i class="fa fa-user-plus" aria-hidden="true"></i> -->
 					</button>
 					<br> Don't have an account? <a href="signup.jsp"
 						style="color: green;">SIGN UP</a>
