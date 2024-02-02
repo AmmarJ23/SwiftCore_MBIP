@@ -1,0 +1,70 @@
+/* styles.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    margin-top: 20px;
+}
+
+h1 {
+    color: #007bff;
+    text-align: center;
+}
+
+.directory-container {
+    background-color: #007bff; /* Blue background color */
+    padding: 10px; /* Add some padding for spacing */
+    margin-bottom: 20px; /* Add margin for separation from the main content */
+}
+
+.directory {
+    color: #ffffff; /* White text color for better contrast */
+}
+
+.card {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    color: #343a40;
+    font-size: 1.5em;
+}
+
+.card p {
+    color: #555;
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.navbar-toggler-icon {
+    background-color: #000;
+}
+
+.card-title {
+    color: #000;
+}
+
