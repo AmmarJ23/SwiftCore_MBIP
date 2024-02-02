@@ -1,6 +1,7 @@
 package com.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,7 @@ import dbUtil.userDAO;
 public class UserController {
 
 	@RequestMapping("/login")
-	public ModelAndView userLogin(HttpServletRequest request)
+	public ModelAndView userLogin(HttpServletRequest request, HttpSession session)
 	{
 		
 		User user = new User();
@@ -27,10 +28,15 @@ public class UserController {
 		
 		String pageName;
 		
-		if(valid == true) {pageName = "dashboard-user";}
+		if(valid == true) 
+		{
+			pageName = "dashboard-user";
+			session.setAttribute("username", user.getUsername());
+		}
 		else {pageName = "login";}
 		
 		ModelAndView dashboardPage = new ModelAndView(pageName);
+		
 		
 		return dashboardPage;
 	}
@@ -62,7 +68,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/personalInfo")
-	public ModelAndView userPersonalInfo(HttpServletRequest request)
+	public ModelAndView userPersonalInfo(HttpServletRequest request, HttpSession session)
 	{
 		ModelAndView dashboardPage = new ModelAndView("dashboard-user");
 		
@@ -85,6 +91,17 @@ public class UserController {
 		
 		int rowAffected = uDao.updateUserInformation(user);
 		
+//		dashboardPage.addObject("username" ,user.getUsername());
+		session.setAttribute("username", user.getUsername());
+		
 		return dashboardPage;
+	}
+	
+	
+	@RequestMapping("/formPage")
+	public ModelAndView formPage()
+	{
+		ModelAndView page = new ModelAndView("formPage");
+		return page;
 	}
 }
