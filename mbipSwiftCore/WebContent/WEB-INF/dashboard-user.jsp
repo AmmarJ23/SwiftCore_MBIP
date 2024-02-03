@@ -1,133 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard User</title>
-</head>
+    <link
+      href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <header
+    class="bg-dark text-white text-center py-3 d-flex justify-content-between align-items-center"
+    style="background-color: #41a0ff !important"
+  >
+    <div class="container"></div>
+    <div class="mr-3 col-3">
+      <a href="#" class="btn btn-primary btn-lg text-white">Logout</a>
+    </div>
+    
+    
+    <div>
+    <p>${sessionScope.username}</p>
+    </div>
+  </header>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0085FF;">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+  <header
+    class="bg-dark text-black text-center py-3 d-flex justify-content-between align-items-center"
+    style="background-color: white !important"
+  >
+    <div class="container d-flex align-items-center" style="margin-left: 50px">
+      <img src="${pageContext.request.contextPath}/resources/img/mbip_logo.png" alt="Logo" style="width: 65px" />
+      <img
+        src="${pageContext.request.contextPath}/resources/img/iskandar-puteri-low-carbon.png"
+        alt="LogoTitle"
+        style="width: 100px"
+      />
+      <h1 class="text-center" style="width: 400px; margin: 0 auto">
+        Dashboard User
+      </h1>
+    </div>
+  </header>
 
-            <!-- Collapsible Navigation Menu -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Link 1</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link 2</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link 3</a>
-                    </li>
-                </ul> -->
+  <div
+    class="directory-container p-3"
+    style="background-color: #d7d7d7; margin-left: 150px; margin-right: 150px"
+  >
+    <div class="directory">
+      <span>Home</span> /
+      <span>Dashboard</span>
+    </div>
+  </div>
+
+  <body>
+    <!-- Main Content Container with Shadow -->
+    <div
+      class="container shadow rounded-3 p-5 mt-3"
+      style="height: 400px; width: 70%; background-color: #d7d7d7"
+    >
+      <!-- Bootstrap Cards -->
+      <div class="row">
+        <!-- Card 1 -->
+        <div class="col-md-6 mb-3">
+          <a href="your_target_url_for_card_1" class="text-decoration-none">
+            <div class="card w-50 mx-auto">
+              <div class="card-body text-center" style="height: 180px">
+                <!-- Adjust the height as needed -->
+                <h5 class="card-title">Carbon Calculation</h5>
+              </div>
             </div>
-
-            <!-- Login/Logout Link -->
-            <div class="d-flex justify-content-end">
-                <a class="nav-link" href="#" style="color: #ffffff;">Logout</a>
-            </div>
+          </a>
         </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container-fluid">
-        <!-- Logo and Title (Centered) -->
-        <div class="row mt-4">
-            <div class="col-md-auto text-left">
-                <img src="<%=request.getContextPath()%>/resources/img/mbip_logo.png" alt="Logo" height="50">
+        <!-- Card 2 -->
+        <div class="col-md-6 mb-3">
+          <a href="your_target_url_for_card_2" class="text-decoration-none">
+            <div class="card w-50 mx-auto">
+              <div class="card-body text-center" style="height: 180px">
+                <!-- Adjust the height as needed -->
+                <h5 class="card-title">Carbon Analysis</h5>
+              </div>
             </div>
-            <div class="col-md-auto text-center mt-2">
-                <h2>Dashboard</h2>
-            </div>
+          </a>
         </div>
-
-
-
-        <!-- Directory Container -->
-        <div class="directory-container">
-            <!-- Directory Structure -->
-            <div class="directory">
-                <span>Home</span> /
-                <span>Dashboard</span>
-            </div>
-        </div>
-
-        <!-- Main Dashboard Card -->
-        <div class="row mt-4">
-            <div class="col-md-12 mb-5">
-                <div class="card">
-                    <!-- Clickable Cards in the Same Row -->
-                    <div class="row">
-
-                        <!-- Clickable Card 1 -->
-                        <div class="col-md-6">
-                            <a href="#" class="card-link">
-                                <div class="card" style="max-width: 100%;">
-                                    <div class="card-body d-flex flex-column align-items-center">
-                                        <h5 class="card-title">
-                                            <a href="carbon_calculation.html">Carbon Calculation</a></h5>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <!-- Clickable Card 2 -->
-                        <div class="col-md-6">
-                            <a href="#" class="card-link">
-                                <div class="card" style="max-width: 100%;">
-                                    <div class="card-body d-flex flex-column align-items-center">
-                                        <h5 class="card-title">
-                                            <a href="carbon_analysis.html">Carbon Analysis</a></h5>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- End Clickable Cards Row -->
-
-                    <!-- Image Slider -->
-                    <div id="imageSlider" class="carousel slide mt-4" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="<%=request.getContextPath()%>/resources/img/image1.png" class="d-block mx-auto w-100" alt="Image 1">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="<%=request.getContextPath()%>/resources/img/image2.png" class="d-block mx-auto w-100" alt="Image 2">
-                            </div>
-                            <!-- Add more carousel items as needed -->
-                        </div>
-                        <a class="carousel-control-prev" href="#imageSlider" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#imageSlider" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                    <!-- End Image Slider -->
-                </div>
-            </div>
-        </div>
-
+      </div>
+      <div class="text-center mt-3">
+      
+      <form action="${pageContext.request.contextPath}/user/formPage">
+      
+      <button
+          class="btn btn-light btn-sm border border-dark w-25 mx-auto py-4"  >
+          Fill in form
+        </button>
+      
+      </form>
+      
+        
+      </div>
     </div>
 
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <footer class="bg-dark text-white text-center py-3 fixed-bottom">
+      <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
 
-</body>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
