@@ -14,9 +14,11 @@
     class="bg-dark text-white text-center py-3 d-flex justify-content-between align-items-center"
     style="background-color: #41a0ff !important"
   >
-    <div class="container"></div>
-    <div class="mr-3 col-3">
+    <div class="container text-end">
       <a href="#" class="btn btn-primary btn-lg text-white">Logout</a>
+    </div>
+    <div class="mr-1 col-1">
+      <span id="usernamePlaceholder">Username</span>
     </div>
   </header>
 
@@ -49,48 +51,61 @@
 
   <body>
     <!-- Main Content Container with Shadow -->
-    <div
-      class="container shadow rounded-3 p-5 mt-3"
-      style="height: 400px; width: 70%; background-color: #d7d7d7"
-    >
+    <div class="container shadow rounded-3 p-5 mt-3 mb-5" style="height: 100%; width: 70%; background-color: #d7d7d7">
       <!-- Bootstrap Cards -->
-      <div class="row">
-        <!-- Card 1 -->
-        <div class="col-md-6 mb-3">
-          <a href="your_target_url_for_card_1" class="text-decoration-none">
-            <div class="card w-50 mx-auto">
-              <div class="card-body text-center" style="height: 180px">
-                <!-- Adjust the height as needed -->
-                <h5 class="card-title">Carbon Calculation</h5>
-              </div>
-            </div>
-          </a>
-        </div>
-        <!-- Card 2 -->
-        <div class="col-md-6 mb-3">
-          <a href="your_target_url_for_card_2" class="text-decoration-none">
-            <div class="card w-50 mx-auto">
-              <div class="card-body text-center" style="height: 180px">
-                <!-- Adjust the height as needed -->
-                <h5 class="card-title">Carbon Analysis</h5>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
       <div class="text-center mt-3">
-        <button
-          class="btn btn-light btn-sm border border-dark w-25 mx-auto py-4"
-        >
-          Fill in form
-        </button>
+        <h2>Total Carbon Emission by Month</h2>
+
+        <!-- Sample Card for Total Water Carbon Emission -->
+        <div class="card mt-3">
+          <div class="card-header">
+            <h5>Total Water Carbon Emission</h5>
+          </div>
+          <div class="card-body">
+            <p>Month: January</p>
+            <p>Total Carbon Emission: 100 kg</p>
+          </div>
+        </div>
+
+        <!-- Sample Card for Total Electric Carbon Emission -->
+        <div class="card mt-3">
+          <div class="card-header">
+            <h5>Total Electric Carbon Emission</h5>
+          </div>
+          <div class="card-body">
+            <p>Month: January</p>
+            <p>Total Carbon Emission: 150 kg</p>
+          </div>
+        </div>
+
+        <!-- Sample Card for Total Recycle Carbon Emission -->
+        <div class="card mt-3">
+          <div class="card-header">
+            <h5>Total Recycle Carbon Emission</h5>
+          </div>
+          <div class="card-body">
+            <p>Month: January</p>
+            <p>Total Carbon Emission: 50 kg</p>
+          </div>
+        </div>
+
+        <!-- Sample Card for Total All Carbon Emission -->
+        <div class="card mt-3">
+          <div class="card-header">
+            <h5>Total All Carbon Emission</h5>
+          </div>
+          <div class="card-body">
+            <p>Month: January</p>
+            <p>Total Carbon Emission: 200 kg</p>
+          </div>
+        </div>
       </div>
     </div>
-
-    <footer class="bg-dark text-white text-center py-3 fixed-bottom">
-      <p>&copy; 2024 Your Company. All rights reserved.</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
+
+  <footer class="bg-dark text-white text-center py-3">
+    <p>&copy; 2024 Your Company. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </html>
