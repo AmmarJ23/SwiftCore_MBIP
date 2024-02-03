@@ -1,9 +1,13 @@
+<%@ page import="com.model.Electricity" %>
+<%@ page import="com.model.Water" %>
+<%@ page import="com.model.Recycle" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard User</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"/>
     <link
       href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
       rel="stylesheet"
@@ -62,7 +66,7 @@
 		<%
 		    // Use a for loop to iterate over the range
 		    String [] monthList = {"January", "February", "March", "April", "May", "June"};
-			double[] monthCarbonElectric = (double[]) request.getAttribute("monthCarbonElectric");
+			Electricity[] monthCarbonElectric = (Electricity[]) request.getAttribute("monthCarbonElectric");
 		    for (int i = 0; i <= 5; i++) {
 		%>
 		
@@ -72,7 +76,36 @@
             <h5><%=monthList[i] %></h5>
           </div>
           <div class="card-body">
-          	<p>Total Electric Carbon Emission: <%=monthCarbonElectric[i] %> kg</p>
+          	<p>Total Electric Carbon Emission:
+                <%
+                    if (monthCarbonElectric[i] == null) {
+                %>
+                    Not Submitted
+                <%
+                    } else {
+                        String status = monthCarbonElectric[i].getStatus();
+                        if (status != null) {
+                            if ("validated".equals(status)) {
+                %>
+                                <%= monthCarbonElectric[i].getCarbonFootprint() %> kg
+                <%
+                            } else if ("submitted".equals(status)) {
+                %>
+                                Waiting for validation
+                <%
+                            } else {
+                %>
+                               <span style="color: red;" >Form Submission Rejected: Please Check Details Again</span> 
+                <%
+                            }
+                        } else {
+                %>
+                            Not Submitted
+                <%
+                        }
+                    }
+                %>
+            </p>
           	<p>Total Water Carbon Emission: 100 kg</p>
           	<p>Total Recycle Carbon Emission: 100 kg</p>
             <p>Total Carbon Emission: 100 kg</p>

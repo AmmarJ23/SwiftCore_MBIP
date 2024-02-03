@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model.User;
+import com.model.Electricity;
 import dbUtil.userDAO;
 import dbUtil.electricityDAO;
 
@@ -26,7 +27,7 @@ public class UserController {
 		
 		userDAO uDao = new userDAO();
 		
-		double [] monthCarbonElectric = new double[6];
+		Electricity [] monthCarbonElectric = new Electricity[6];
 		
 		boolean valid = uDao.loginVerification(user);
 		
@@ -101,6 +102,10 @@ public class UserController {
 		
 		int rowAffected = uDao.updateUserInformation(user);
 		
+		Electricity [] monthCarbonElectric = monthEmission(session);
+		
+		dashboardPage.addObject( "monthCarbonElectric", monthCarbonElectric);
+		
 //		dashboardPage.addObject("username" ,user.getUsername());
 		session.setAttribute("username", user.getUsername());
 		
@@ -120,25 +125,54 @@ public class UserController {
 	{
 		ModelAndView page = new ModelAndView("dashboard-user");
 		
-		double [] monthCarbonElectric = monthEmission(session);
+		Electricity [] monthCarbonElectric = monthEmission(session);
 		
 		page.addObject( "monthCarbonElectric", monthCarbonElectric);
 		
 		return page;
 	}
 	
-	public double[] monthEmission(HttpSession session)
+	public static Electricity[] monthEmission(HttpSession session)
 	{
 		electricityDAO eDao = new electricityDAO();
 		
 		String [] monthList = {"January", "February", "March", "April", "May", "June"};
-		double [] monthCarbonElectric = new double[6];
+		Electricity [] monthCarbonElectric = new Electricity[6];
 		
 		for(int i = 0; i <=5 ; i++)
 		{
-			monthCarbonElectric[i] = eDao.getCarbonEmission(monthList[i], (String) session.getAttribute("username"));
+			monthCarbonElectric[i] = eDao.get(monthList[i], (String) session.getAttribute("username"));
 		}
 		
 		return monthCarbonElectric;
+	}
+	
+	public static String[] monthColour(HttpSession session) 
+	{
+		Electricity[] monthCarbonElectric = UserController.monthEmission(session);
+	    String[] monthColour = new String[6];
+	    
+	    for (int i = 0; i <= 5; i++) {
+	        if (monthCarbonElectric[i] == null) {
+	            // Handle the case when monthCarbonElectric[i] is null
+	        	monthColour[i] = "background-color: #F68787; width: 130px;";
+	        } else {
+	            String status = monthCarbonElectric[i].getStatus();
+	            
+	            if (status != null) {
+	                if ("validated".equals(status)) {
+	                    monthColour[i] = "background-color:#6EBF77; width: 130px;";
+	                } else if ("submitted".equals(status)) {
+	                    monthColour[i] = "background-color:#6EBF77; width: 130px;";
+	                } else {
+	                    monthColour[i] = "background-color:#F68787; width: 130px;";
+	                }
+	            } else {
+	                monthColour[i] = "background-color: #F68787; width: 130px;";
+	            }
+	        }
+	    }
+	    
+	    return monthColour;
 	}
 }

@@ -10,21 +10,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.model.Electricity;
 import dbUtil.electricityDAO;
+import com.controller.UserController;
 
 @RequestMapping("/electricity")
 @Controller
 public class electricityFormController {
 	
 	@RequestMapping("/form") 
-	//Pilih bulan
-	public ModelAndView formPage() {
-		ModelAndView page = new ModelAndView("monthSelect");
-		
-		page.addObject("formType","electricity");
-		
-		return page;
-		
+	// Pilih bulan
+	public ModelAndView formPage(HttpSession session) {
+	    ModelAndView page = new ModelAndView("monthSelect");
+	    
+	    String[] monthColour = UserController.monthColour(session);
+	   
+	    page.addObject("monthColour", monthColour);
+	    
+	    page.addObject("formType", "electricity");
+	    
+	    return page;
 	}
+
 	
 	@RequestMapping("/month")
 	//form
@@ -57,6 +62,10 @@ public class electricityFormController {
 		
 		electricityDAO eDao = new electricityDAO();
 		eDao.add(e);
+		
+		String[] monthColour = UserController.monthColour(session);
+		   
+	    page.addObject("monthColour", monthColour);
 	
 		return page;
 	}

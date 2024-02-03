@@ -30,18 +30,22 @@
       <hr />
 
       <form action="${pageContext.request.contextPath}/electricity/month">
+      
+      <% String[] monthColour = (String[]) request.getAttribute("monthColour"); 
+      %>
+      
         <div class="button-container-row ">
-          <button class="form-submit  me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="January" style="width: 130px;">January</button>
-          <button class="form-submit  me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="February" style="width: 130px;">February</button>
-          <button class="form-submit  me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="March" style="width: 130px;">March</button>
+          <button class="form-submit  me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="January" style="<%=monthColour[0] %>">January</button>
+          <button class="form-submit  me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="February" style="<%=monthColour[1] %>">February</button>
+          <button class="form-submit  me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="March" style="<%=monthColour[2] %>">March</button>
         </div>
         
         <br>
 
         <div class="button-container-row">
-          <button class="form-submit me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="April" style="width: 130px;">April</button>
-          <button class="form-submit me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="May" style="width: 130px;">May</button>
-          <button class="form-submit me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="June" style="width: 130px;">June</button>
+          <button class="form-submit me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="April" style="<%=monthColour[3] %>">April</button>
+          <button class="form-submit me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="May" style="<%=monthColour[4] %>">May</button>
+          <button class="form-submit me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="June" style="<%=monthColour[5] %>">June</button>
         </div>
       </form>
     </div>
