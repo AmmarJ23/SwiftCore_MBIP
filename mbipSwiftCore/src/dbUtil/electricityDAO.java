@@ -34,5 +34,16 @@ public class electricityDAO {
 			return null;
 		}
 	}
+	
+	public double getCarbonEmission(String month, String username) {
+		String sql = "SELECT carbon_footprint FROM electricity_consumption WHERE MONTH=? AND USERNAME=?";
+		try {
+			double e = jdbct.queryForObject(sql, Double.class, month, username);
+			return e;
+		} catch (EmptyResultDataAccessException e)
+		{
+			return 0.0;
+		}
+	}
 
 }

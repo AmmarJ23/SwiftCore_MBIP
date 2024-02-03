@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.model.User;
 import dbUtil.userDAO;
+import dbUtil.electricityDAO;
 
 @RequestMapping("/user")
 @Controller
@@ -21,8 +22,11 @@ public class UserController {
 		User user = new User();
 		user.setUsername(request.getParameter("username"));
 		user.setPassword(request.getParameter("password"));
+		boolean validC = false;
 		
 		userDAO uDao = new userDAO();
+		
+		double [] monthCarbonElectric = new double[6];
 		
 		boolean valid = uDao.loginVerification(user);
 		
@@ -32,11 +36,17 @@ public class UserController {
 		{
 			pageName = "dashboard-user";
 			session.setAttribute("username", user.getUsername());
+			monthCarbonElectric = monthEmission(session);
+			
+			
+			validC = true;
+			
 		}
 		else {pageName = "login";}
 		
 		ModelAndView dashboardPage = new ModelAndView(pageName);
 		
+		if(validC == true){ dashboardPage.addObject( "monthCarbonElectric", monthCarbonElectric);}
 		
 		return dashboardPage;
 	}
@@ -103,5 +113,32 @@ public class UserController {
 	{
 		ModelAndView page = new ModelAndView("formPage");
 		return page;
+	}
+	
+	@RequestMapping("/dashboard")
+	public ModelAndView dashboardUserPage(HttpSession session)
+	{
+		ModelAndView page = new ModelAndView("dashboard-user");
+		
+		double [] monthCarbonElectric = monthEmission(session);
+		
+		page.addObject( "monthCarbonElectric", monthCarbonElectric);
+		
+		return page;
+	}
+	
+	public double[] monthEmission(HttpSession session)
+	{
+		electricityDAO eDao = new electricityDAO();
+		
+		String [] monthList = {"January", "February", "March", "April", "May", "June"};
+		double [] monthCarbonElectric = new double[6];
+		
+		for(int i = 0; i <=5 ; i++)
+		{
+			monthCarbonElectric[i] = eDao.getCarbonEmission(monthList[i], (String) session.getAttribute("username"));
+		}
+		
+		return monthCarbonElectric;
 	}
 }

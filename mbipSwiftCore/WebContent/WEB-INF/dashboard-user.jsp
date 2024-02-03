@@ -14,14 +14,13 @@
     class="bg-dark text-white text-center py-3 d-flex justify-content-between align-items-center"
     style="background-color: #41a0ff !important"
   >
-    <div class="container"></div>
-    <div class="mr-3 col-3">
+    <div class="container text-end">
       <a href="#" class="btn btn-primary btn-lg text-white">Logout</a>
     </div>
     
     
-    <div>
-    <p>${sessionScope.username}</p>
+    <div class="mr-1 col-1">
+    <span>${sessionScope.username}</span>
     </div>
   </header>
 
@@ -54,34 +53,39 @@
 
   <body>
     <!-- Main Content Container with Shadow -->
-    <div
-      class="container shadow rounded-3 p-5 mt-3"
-      style="height: 400px; width: 70%; background-color: #d7d7d7"
-    >
+    <div class="container shadow rounded-3 p-5 mt-3 mb-5" style="height: 100%; width: 70%; background-color: #d7d7d7">
       <!-- Bootstrap Cards -->
-      <div class="row">
-        <!-- Card 1 -->
-        <div class="col-md-6 mb-3">
-          <a href="your_target_url_for_card_1" class="text-decoration-none">
-            <div class="card w-50 mx-auto">
-              <div class="card-body text-center" style="height: 180px">
-                <!-- Adjust the height as needed -->
-                <h5 class="card-title">Carbon Calculation</h5>
-              </div>
-            </div>
-          </a>
+      <div class="text-center mt-3">
+        <h2>Total Carbon Emission by Month</h2>
+        
+        
+		<%
+		    // Use a for loop to iterate over the range
+		    String [] monthList = {"January", "February", "March", "April", "May", "June"};
+			double[] monthCarbonElectric = (double[]) request.getAttribute("monthCarbonElectric");
+		    for (int i = 0; i <= 5; i++) {
+		%>
+		
+		<!-- Emission Card -->
+        <div class="card mt-3">
+          <div class="card-header">
+            <h5><%=monthList[i] %></h5>
+          </div>
+          <div class="card-body">
+          	<p>Total Electric Carbon Emission: <%=monthCarbonElectric[i] %> kg</p>
+          	<p>Total Water Carbon Emission: 100 kg</p>
+          	<p>Total Recycle Carbon Emission: 100 kg</p>
+            <p>Total Carbon Emission: 100 kg</p>
+            
+          </div>
+          
         </div>
-        <!-- Card 2 -->
-        <div class="col-md-6 mb-3">
-          <a href="your_target_url_for_card_2" class="text-decoration-none">
-            <div class="card w-50 mx-auto">
-              <div class="card-body text-center" style="height: 180px">
-                <!-- Adjust the height as needed -->
-                <h5 class="card-title">Carbon Analysis</h5>
-              </div>
-            </div>
-          </a>
-        </div>
+		
+		
+		
+		<%
+		    }
+		%>
       </div>
       <div class="text-center mt-3">
       

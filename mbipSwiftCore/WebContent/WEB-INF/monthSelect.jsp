@@ -11,7 +11,9 @@
       href="https://fonts.googleapis.com/css?family=Inter&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/formStyle.css" />
+    
     <title>Document</title>
   </head>
 
@@ -28,16 +30,18 @@
       <hr />
 
       <form action="${pageContext.request.contextPath}/electricity/month">
-        <div class="button-container-row">
-          <button class="form-submit" type="submit" name="selectedMonth" value="January">January</button>
-          <button class="form-submit" type="submit" name="selectedMonth" value="February">February</button>
-          <button class="form-submit" type="submit" name="selectedMonth" value="March">March</button>
+        <div class="button-container-row ">
+          <button class="form-submit  me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="January" style="width: 130px;">January</button>
+          <button class="form-submit  me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="February" style="width: 130px;">February</button>
+          <button class="form-submit  me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="March" style="width: 130px;">March</button>
         </div>
+        
+        <br>
 
         <div class="button-container-row">
-          <button class="form-submit" type="submit" name="selectedMonth" value="April">April</button>
-          <button class="form-submit" type="submit" name="selectedMonth" value="May">May</button>
-          <button class="form-submit" type="submit" name="selectedMonth" value="June">June</button>
+          <button class="form-submit me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="April" style="width: 130px;">April</button>
+          <button class="form-submit me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="May" style="width: 130px;">May</button>
+          <button class="form-submit me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="June" style="width: 130px;">June</button>
         </div>
       </form>
     </div>
