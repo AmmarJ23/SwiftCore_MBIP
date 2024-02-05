@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/formStyle.css" />
   <title>Document</title>
 </head>
@@ -49,6 +50,11 @@
           </form>
         </a>
       </div>
+      
+      <div class="mr-3 col-3">
+          <a href="${pageContext.request.contextPath}/user/dashboard"  style="margin: 50px auto auto 315px;" class="btn btn-primary btn-lg text-white">Dashboard</a>
+        </div>
+      
     </div>
   </body>
 </html>
