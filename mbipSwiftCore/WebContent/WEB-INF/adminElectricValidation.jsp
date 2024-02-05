@@ -1,3 +1,5 @@
+<%@ page import="com.model.Electricity" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -91,23 +93,29 @@
               </div>
               
               <br>
+              
+              <%
+			    List<Electricity> electricityList = (List<Electricity>)request.getAttribute("electricityList");
+				%>
 
               <!-- Table -->
               <table class="table">
                 <thead>
                   <tr>
                     <th scope="col">Username</th>
-                    <th scope="col">Invoice No</th>
-                    <th scope="col">Usage</th>
+                    <th scope="col">Month</th>
+                    <th scope="col">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>JohnDoe</td>
-                    <td>INV123</td>
-                    <td>150 kWh</td>
-                  </tr>
-                  <!-- Add more rows as needed -->
+                    <% for (com.model.Electricity electricity : electricityList) { %>
+			            <tr>
+			                <td><%= electricity.getUsername() %></td>
+			                <td><%= electricity.getMonth() %></td>
+			                <td><%= electricity.getStatus() %></td>
+			            </tr>
+			        <% } %>
                 </tbody>
               </table>
             </div>

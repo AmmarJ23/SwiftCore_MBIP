@@ -1,5 +1,7 @@
 package dbUtil;
 
+import java.util.List;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -75,6 +77,12 @@ public class electricityDAO {
 
         int[] counts = {submittedCount, validatedCount, rejectedCount};
         return counts;
+    }
+	
+	public List<Electricity> getAll() {
+        String sql = "SELECT * FROM electricity_consumption";
+        List<Electricity> electricityList = jdbct.query(sql, new BeanPropertyRowMapper<>(Electricity.class));
+        return electricityList;
     }
 
 }
