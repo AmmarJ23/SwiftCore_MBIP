@@ -181,7 +181,7 @@ public class UserController {
 	                } else if ("submitted".equals(status)) {
 	                    monthColour[i] = "background-color:#4682B4; width: 130px;";
 	                } else {
-	                    monthColour[i] = "background-color:#87CEEB; width: 130px;";
+	                    monthColour[i] = "background-color:#4682B4; width: 130px;";
 	                }
 	            } else {
 	                monthColour[i] = "background-color: #87CEEB; width: 130px;";

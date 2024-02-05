@@ -83,6 +83,9 @@ public class electricityFormController {
 		e2.setNoInvoice(request.getParameter("invoiceNo"));
 		e2.setConsumption(Double.parseDouble(request.getParameter("usage")));
 		
+		String[] monthColour = UserController.monthColour(session);
+		   
+	    page.addObject("monthColour", monthColour);
 		
 		if((e1.getNoInvoice() == e2.getNoInvoice()) && (e1.getConsumption() == e2.getConsumption())) {
 			return page;

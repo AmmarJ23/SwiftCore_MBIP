@@ -15,7 +15,7 @@
   </head>
 
   <header
-    class="bg-dark text-white text-center py-3 d-flex justify-content-between align-items-center"
+    class="bg-dark text-white text-center py-3 d-flex justify-content-between align-items-center fixed-top"
     style="background-color: #41a0ff !important"
   >
     <div class="container text-end">
@@ -58,6 +58,20 @@
   <body>
     <!-- Main Content Container with Shadow -->
     <div class="container shadow rounded-3 p-5 mt-3 mb-5" style="height: 100%; width: 70%; background-color: #d7d7d7">
+    
+    <div class="text-center mt-3">
+      
+      <form action="${pageContext.request.contextPath}/user/formPage">
+      
+      <button
+          class="btn btn-light btn-sm border border-dark w-25 mx-auto py-4"  >
+          Fill in form
+        </button>
+      
+      </form>
+      
+        
+      </div>
       <!-- Bootstrap Cards -->
       <div class="text-center mt-3">
         <h2>Total Carbon Emission by Month</h2>
@@ -120,22 +134,10 @@
 		    }
 		%>
       </div>
-      <div class="text-center mt-3">
       
-      <form action="${pageContext.request.contextPath}/user/formPage">
-      
-      <button
-          class="btn btn-light btn-sm border border-dark w-25 mx-auto py-4"  >
-          Fill in form
-        </button>
-      
-      </form>
-      
-        
-      </div>
     </div>
 
-    <footer class="bg-dark text-white text-center py-3 fixed-bottom">
+    <footer class="bg-dark text-white text-center py-3">
       <p>&copy; 2024 Your Company. All rights reserved.</p>
     </footer>
 

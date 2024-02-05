@@ -31,7 +31,7 @@
             <div name="row">
 
                 <div class="container">
-                    Electricity Consumption
+                    Electricity Consumption </br>
                     
                     <label for="invoiceNo" class="col-sm-2 col-form-label">Invoice Number: </label>
                     <input type="text" placeholder="Invoice number" name="invoiceNo">
@@ -40,7 +40,8 @@
                     <input type="text" placeholder="Usage value: kg" name="usage">
                     
                     <input type="hidden" value="${month}" name="month">
-                    <button class="upload-button">Click here to upload <br /> your bill's image</button>
+                    <label for="usage" class="col-sm-2 col-form-label">Bill Image: </label>
+					<input type="file" name="billImg">
                     <button class="form-submit" type="submit">Submit</button>
                 </div>
             </div>
@@ -62,8 +63,10 @@
                     <input type="text"  name="usage" value="<%= e.getConsumption() %>"> </br>
                     
                     <input type="hidden" value="${month}" name="month">
-                    <button class="upload-button">Click here to upload <br /> your bill's image</button>
-                    <button class="form-submit" type="submit">Submit</button>
+                    
+					<label for="usage" class="col-sm-2 col-form-label">Bill Image: </label>
+					<input type="file" name="billImg">
+                    <button class="form-submit" type="submit">Update</button>
                 </div>
         </form>
         
