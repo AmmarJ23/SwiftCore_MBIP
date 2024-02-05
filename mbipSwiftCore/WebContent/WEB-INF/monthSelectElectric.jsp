@@ -48,8 +48,8 @@
           <button class="form-submit me-2 btn btn-primary btn-lg" type="submit" name="selectedMonth" value="June" style="<%=monthColour[5] %>">June</button>
         </div>
         
-        <div class="mr-3 col-3">
-          <a href="${pageContext.request.contextPath}/user/formPage"  style="margin: 50px auto auto 315px;" class="btn btn-primary btn-lg text-white">Back</a>
+        <div class="text-center">
+          <a href="${pageContext.request.contextPath}/user/formPage"  style="margin: 50px auto auto 315px;" class="btn btn-primary btn-lg text-white mx-auto">Back</a>
         </div>
         
       </form>

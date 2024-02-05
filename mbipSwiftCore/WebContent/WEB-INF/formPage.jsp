@@ -51,8 +51,8 @@
         </a>
       </div>
       
-      <div class="mr-3 col-3">
-          <a href="${pageContext.request.contextPath}/user/dashboard"  style="margin: 50px auto auto 315px;" class="btn btn-primary btn-lg text-white">Dashboard</a>
+      <div class="text-center">
+          <a href="${pageContext.request.contextPath}/user/dashboard"  style="margin: 50px auto auto 315px;" class="btn btn-primary btn-lg text-white mx-auto">Dashboard</a>
         </div>
       
     </div>
