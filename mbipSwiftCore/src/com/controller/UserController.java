@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model.User;
+import com.model.Water;
 import com.model.Electricity;
+import com.model.Recycle;
+
 import dbUtil.userDAO;
 import dbUtil.electricityDAO;
 import dbUtil.waterDAO;
@@ -178,9 +181,97 @@ public class UserController {
 		return monthCarbonElectric;
 	}
 	
+	public static Water[] monthEmissionWater(HttpSession session)
+	{
+		waterDAO eDao = new waterDAO();
+		
+		String [] monthList = {"January", "February", "March", "April", "May", "June"};
+		Water [] monthCarbonElectric = new Water[6];
+		
+		for(int i = 0; i <=5 ; i++)
+		{
+			monthCarbonElectric[i] = eDao.get(monthList[i], (String) session.getAttribute("username"));
+		}
+		
+		return monthCarbonElectric;
+	}
+	
+	public static Recycle[] monthEmissionRecycle(HttpSession session)
+	{
+		recycleDAO eDao = new recycleDAO();
+		
+		String [] monthList = {"January", "February", "March", "April", "May", "June"};
+		Recycle [] monthCarbonElectric = new Recycle[6];
+		
+		for(int i = 0; i <=5 ; i++)
+		{
+			monthCarbonElectric[i] = eDao.get(monthList[i], (String) session.getAttribute("username"));
+		}
+		
+		return monthCarbonElectric;
+	}
+	
 	public static String[] monthColour(HttpSession session) 
 	{
 		Electricity[] monthCarbonElectric = UserController.monthEmission(session);
+	    String[] monthColour = new String[6];
+	    
+	    for (int i = 0; i <= 5; i++) {
+	        if (monthCarbonElectric[i] == null) {
+	            // Handle the case when monthCarbonElectric[i] is null
+	        	monthColour[i] = "background-color: #87CEEB; width: 130px;";
+	        } else {
+	            String status = monthCarbonElectric[i].getStatus();
+	            
+	            if (status != null) {
+	                if ("validated".equals(status)) {
+	                    monthColour[i] = "background-color:#4682B4; width: 130px;";
+	                } else if ("submitted".equals(status)) {
+	                    monthColour[i] = "background-color:#4682B4; width: 130px;";
+	                } else {
+	                    monthColour[i] = "background-color:#4682B4; width: 130px;";
+	                }
+	            } else {
+	                monthColour[i] = "background-color: #87CEEB; width: 130px;";
+	            }
+	        }
+	    }
+	    
+	    return monthColour;
+	}
+	
+	public static String[] monthColourWater(HttpSession session) 
+	{
+		Water[] monthCarbonElectric = UserController.monthEmissionWater(session);
+	    String[] monthColour = new String[6];
+	    
+	    for (int i = 0; i <= 5; i++) {
+	        if (monthCarbonElectric[i] == null) {
+	            // Handle the case when monthCarbonElectric[i] is null
+	        	monthColour[i] = "background-color: #87CEEB; width: 130px;";
+	        } else {
+	            String status = monthCarbonElectric[i].getStatus();
+	            
+	            if (status != null) {
+	                if ("validated".equals(status)) {
+	                    monthColour[i] = "background-color:#4682B4; width: 130px;";
+	                } else if ("submitted".equals(status)) {
+	                    monthColour[i] = "background-color:#4682B4; width: 130px;";
+	                } else {
+	                    monthColour[i] = "background-color:#4682B4; width: 130px;";
+	                }
+	            } else {
+	                monthColour[i] = "background-color: #87CEEB; width: 130px;";
+	            }
+	        }
+	    }
+	    
+	    return monthColour;
+	}
+	
+	public static String[] monthColourRecycle(HttpSession session) 
+	{
+		Recycle[] monthCarbonElectric = UserController.monthEmissionRecycle(session);
 	    String[] monthColour = new String[6];
 	    
 	    for (int i = 0; i <= 5; i++) {

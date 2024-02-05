@@ -12,20 +12,20 @@ public class recycleDAO {
 	JdbcTemplate jdbct = new JdbcTemplate(dbDataSource.getDataSource());
 	
 	public void add(Recycle e) {
-		String sql = "INSERT INTO `recycle_consumption` ( `no_invoice`, `consumption`, `month`, `carbon_footprint`, `username`, `status`) VALUES (?,?,?,?,?,?)";
+		String sql = "INSERT INTO `recycle_activity` ( `no_invoice`, `consumption`, `month`, `carbon_footprint`, `username`, `status`) VALUES (?,?,?,?,?,?)";
 		Object [] args = {e.getNoInvoice(), e.getConsumption(), e.getMonth(), e.getCarbonFootprint(), e.getUsername(), "submitted"};
 		jdbct.update(sql, args);
 	}
 	
 	public void update(Recycle e) {
-	    String sql = "UPDATE `recycle_consumption` SET `no_invoice`=?, `consumption`=?, `carbon_footprint`=? WHERE `month`=? AND `username`=?";
+	    String sql = "UPDATE `recycle_activity` SET `no_invoice`=?, `consumption`=?, `carbon_footprint`=? WHERE `month`=? AND `username`=?";
 	    Object[] args = {e.getNoInvoice(), e.getConsumption(), e.getCarbonFootprint(), e.getMonth(), e.getUsername()};
 	    jdbct.update(sql, args);
 	}
 
 	
 	public Recycle get(String month, String username) {
-		String sql = "SELECT * FROM recycle_consumption WHERE MONTH=? AND USERNAME=?";
+		String sql = "SELECT * FROM recycle_activity WHERE MONTH=? AND USERNAME=?";
 		try {
 			Recycle e = jdbct.queryForObject(sql, new BeanPropertyRowMapper<Recycle>(Recycle.class), month, username);
 			return e;
@@ -36,7 +36,7 @@ public class recycleDAO {
 	}
 	
 	public double getCarbonEmission(String month, String username) {
-		String sql = "SELECT carbon_footprint FROM recycle_consumption WHERE MONTH=? AND USERNAME=?";
+		String sql = "SELECT carbon_footprint FROM recycle_activity WHERE MONTH=? AND USERNAME=?";
 		try {
 			double e = jdbct.queryForObject(sql, Double.class, month, username);
 			return e;

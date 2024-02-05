@@ -18,9 +18,9 @@ public class recycleFormController {
 
 	@RequestMapping("/form")
 	public ModelAndView formPage(HttpSession session) {
-	    ModelAndView page = new ModelAndView("monthSelect");
+	    ModelAndView page = new ModelAndView("monthSelectRecycle");
 	    
-	    String[] monthColour = UserController.monthColour(session);
+	    String[] monthColour = UserController.monthColourRecycle(session);
 	   
 	    page.addObject("monthColour", monthColour);
 	    
@@ -48,7 +48,7 @@ public class recycleFormController {
 	
 	@RequestMapping("/add")
 	public ModelAndView addE(HttpServletRequest request ,HttpSession session) {
-		ModelAndView page = new ModelAndView("monthSelect");
+		ModelAndView page = new ModelAndView("monthSelectRecycle");
 		
 		Double carbonFactor = 2.860;
 		
@@ -73,7 +73,7 @@ public class recycleFormController {
 		recycleDAO eDao = new recycleDAO();
 		eDao.add(e);
 		
-		String[] monthColour = UserController.monthColour(session);
+		String[] monthColour = UserController.monthColourRecycle(session);
 		   
 	    page.addObject("monthColour", monthColour);
 	
@@ -82,7 +82,7 @@ public class recycleFormController {
 	
 	@RequestMapping("/update")
 	public ModelAndView updateE(HttpServletRequest request ,HttpSession session) {
-		ModelAndView page = new ModelAndView("monthSelect");
+		ModelAndView page = new ModelAndView("monthSelectRecycle");
 		recycleDAO eDao = new recycleDAO();
 		
 		Double carbonFactor = 0.584;
@@ -101,7 +101,7 @@ public class recycleFormController {
 			return formPage;
 		}
 		
-		String[] monthColour = UserController.monthColour(session);
+		String[] monthColour = UserController.monthColourRecycle(session);
 		   
 	    page.addObject("monthColour", monthColour);
 		

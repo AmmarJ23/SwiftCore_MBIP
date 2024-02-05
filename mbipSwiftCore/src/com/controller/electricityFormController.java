@@ -19,7 +19,7 @@ public class electricityFormController {
 	@RequestMapping("/form") 
 	// Pilih bulan
 	public ModelAndView formPage(HttpSession session) {
-	    ModelAndView page = new ModelAndView("monthSelect");
+	    ModelAndView page = new ModelAndView("monthSelectElectric");
 	    
 	    String[] monthColour = UserController.monthColour(session);
 	   
@@ -32,7 +32,6 @@ public class electricityFormController {
 
 	
 	@RequestMapping("/month")
-	//form
 	public ModelAndView monthPage(HttpSession session, @RequestParam ("selectedMonth") String selectedMonth) {
 		ModelAndView page = new ModelAndView("formPageElectric");
 		
@@ -49,7 +48,7 @@ public class electricityFormController {
 	
 	@RequestMapping("/add")
 	public ModelAndView addE(HttpServletRequest request ,HttpSession session) {
-		ModelAndView page = new ModelAndView("monthSelect");
+		ModelAndView page = new ModelAndView("monthSelectElectric");
 		
 		Double carbonFactor = 0.584;
 		
@@ -83,7 +82,7 @@ public class electricityFormController {
 	
 	@RequestMapping("/update")
 	public ModelAndView updateE(HttpServletRequest request ,HttpSession session) {
-		ModelAndView page = new ModelAndView("monthSelect");
+		ModelAndView page = new ModelAndView("monthSelectElectric");
 		electricityDAO eDao = new electricityDAO();
 		
 		Double carbonFactor = 0.584;

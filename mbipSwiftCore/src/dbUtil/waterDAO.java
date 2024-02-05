@@ -23,7 +23,7 @@ public class waterDAO {
 	}
 	
 	public Water get(String month, String username) {
-		String sql = "SELECT * FROM electricity_consumption WHERE MONTH=? AND USERNAME=?";
+		String sql = "SELECT * FROM water_consumption WHERE MONTH=? AND USERNAME=?";
 		try {
 			Water e = jdbct.queryForObject(sql, new BeanPropertyRowMapper<Water>(Water.class), month, username);
 			return e;

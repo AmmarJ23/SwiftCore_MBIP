@@ -31,7 +31,7 @@
         </a>
   
         <!-- Form for Water Consumption -->
-        <a href="monthSelectWater.html" style="text-decoration: none; color: inherit; width: 30%; height: 100px;">
+        <a href="${pageContext.request.contextPath}/water/form" style="text-decoration: none; color: inherit; width: 30%; height: 100px;">
           <form action="monthSelectWater.html" method="post" style="width: 100%; height: 100%;">
             <div class="container" style="height: 100%; display: flex; align-items: center; justify-content: center;">
               Water Consumption </br>
@@ -41,7 +41,7 @@
         </a>
   
         <!-- Form for Recycle Activity -->
-        <a href="monthSelectRecycleActivity.html" style="text-decoration: none; color: inherit; width: 30%; height: 100px;">
+        <a href="${pageContext.request.contextPath}/recycle/form" style="text-decoration: none; color: inherit; width: 30%; height: 100px;">
           <form action="monthSelectRecycleActivity.html" method="post" style="width: 100%; height: 100%;">
             <div class="container" style="height: 100%; display: flex; align-items: center; justify-content: center;">
               Recycle Activity </br>

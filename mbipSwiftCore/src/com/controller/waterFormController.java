@@ -18,9 +18,9 @@ public class waterFormController {
 	
 	@RequestMapping("/form")
 	public ModelAndView formPage(HttpSession session) {
-	    ModelAndView page = new ModelAndView("monthSelect");
+	    ModelAndView page = new ModelAndView("monthSelectWater");
 	    
-	    String[] monthColour = UserController.monthColour(session);
+	    String[] monthColour = UserController.monthColourWater(session);
 	   
 	    page.addObject("monthColour", monthColour);
 	    
@@ -47,7 +47,7 @@ public class waterFormController {
 	
 	@RequestMapping("/add")
 	public ModelAndView addE(HttpServletRequest request ,HttpSession session) {
-		ModelAndView page = new ModelAndView("monthSelect");
+		ModelAndView page = new ModelAndView("monthSelectWater");
 		
 		Double carbonFactor = 0.419;
 		
@@ -72,7 +72,7 @@ public class waterFormController {
 		waterDAO eDao = new waterDAO();
 		eDao.add(e);
 		
-		String[] monthColour = UserController.monthColour(session);
+		String[] monthColour = UserController.monthColourWater(session);
 		   
 	    page.addObject("monthColour", monthColour);
 	
@@ -81,7 +81,7 @@ public class waterFormController {
 	
 	@RequestMapping("/update")
 	public ModelAndView updateE(HttpServletRequest request ,HttpSession session) {
-		ModelAndView page = new ModelAndView("monthSelect");
+		ModelAndView page = new ModelAndView("monthSelectWater");
 		waterDAO eDao = new waterDAO();
 		
 		Double carbonFactor = 0.584;
@@ -100,7 +100,7 @@ public class waterFormController {
 			return formPage;
 		}
 		
-		String[] monthColour = UserController.monthColour(session);
+		String[] monthColour = UserController.monthColourWater(session);
 		   
 	    page.addObject("monthColour", monthColour);
 		
