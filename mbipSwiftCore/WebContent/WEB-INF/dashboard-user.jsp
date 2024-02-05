@@ -18,7 +18,7 @@
     class="bg-dark text-white text-center py-3 d-flex justify-content-between align-items-center fixed-top"
     style="background-color: #41a0ff !important"
   >
-    <div class="container text-end">
+    <div class="mr-1 col-1">
       <a href="${pageContext.request.contextPath}/" class="btn btn-primary btn-lg text-white">Logout</a>
     </div>
     
@@ -64,9 +64,9 @@
       <form action="${pageContext.request.contextPath}/user/formPage">
       
       <button
-          class="btn btn-light btn-sm border border-dark w-25 mx-auto py-4"  >
+          class="btn btn-info btn-lg btn-block text-white"  >
           Fill in form
-        </button>
+        </button><br>
       
       </form>
       
