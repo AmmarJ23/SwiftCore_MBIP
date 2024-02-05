@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electricity Form</title>
+    <link
+      href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="${pageContext.request.contextPath}/resources/css/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css"
+      integrity="sha512-xcPP4LWdrQeT5VG2za6YwL1WJ3ro/Jn4jme4hE3LQebhpNOQnW1FfM24b4DmDZ0lFD6QtqenIu+pcCL4kyjp3A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body class="d-flex flex-column min-vh-100">
+    <header
+      class="bg-dark text-white text-center py-3 d-flex justify-content-between align-items-center"
+      style="background-color: #41a0ff !important"
+    >
+      <div class="container text-end">
+        <a href="#" class="btn btn-primary btn-lg text-white">Logout</a>
+      </div>
+      <div class="mr-1 col-1">
+        <span id="usernamePlaceholder">Username</span>
+      </div>
+    </header>
+
+    <header
+      class="bg-dark text-black text-center py-3 d-flex justify-content-between align-items-center"
+      style="background-color: white !important"
+    >
+      <div
+        class="container d-flex align-items-center"
+        style="margin-left: 50px"
+      >
+        <img src="${pageContext.request.contextPath}/img/mbip_logo.png" alt="Logo" style="width: 65px" />
+        <img
+          src="${pageContext.request.contextPath}/img/iskandar-puteri-low-carbon.png"
+          alt="LogoTitle"
+          style="width: 100px"
+        />
+        <h1 class="text-center" style="width: 400px; margin: 0 auto">
+          Electricity Form
+        </h1>
+      </div>
+    </header>
+
+    <main class="flex-grow-1 p-4">
+      <div class="row">
+        <!-- First Card -->
+        <div class="col-md-6 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <!-- Search Bar with Clickable Search Icon -->
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search by username"
+                  aria-label="Search by username"
+                  aria-describedby="basic-addon2"
+                />
+                <a
+                  href="#"
+                  class="input-group-text"
+                  id="basic-addon2"
+                  onclick="alert('Search icon clicked!');"
+                >
+                  <i class="bi bi-search"></i>
+                </a>
+              </div>
+              
+              <div>
+              User type:
+        <select class="form-input" id="user-type" name ="user-type" required>
+            <option value="" disabled selected>Select user type</option>
+            <option value="a1" ${user.getUserType() eq 'a1' ? 'selected' : ''}>Housing (high rise)</option>
+            <option value="a2" ${user.getUserType() eq 'a2' ? 'selected' : ''}>Housing (landed)</option>
+            <option value="b" ${user.getUserType() eq 'b' ? 'selected' : ''}>Institution</option>
+            <option value="mbip" ${user.getUserType() eq 'mbip' ? 'selected' : ''}>MBIP staff and divisions</option>
+        </select>
+              </div>
+              
+              <br>
+
+              <!-- Table -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Invoice No</th>
+                    <th scope="col">Usage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>JohnDoe</td>
+                    <td>INV123</td>
+                    <td>150 kWh</td>
+                  </tr>
+                  <!-- Add more rows as needed -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second Card -->
+        <div class="col-md-6 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-10">
+                  <ul class="list-group">
+                    <li class="list-group-item active">User Details</li>
+                    <li class="list-group-item">Username: JohnDoe</li>
+                    <li class="list-group-item">Invoice No: INV123</li>
+                    <li class="list-group-item">Usage: 150 kWh</li>
+                  </ul>
+                </div>
+                <div class="col-2">
+                  <!-- Hidden anchor with data-lightbox attribute -->
+                  <a
+                    href="img/bil_elektrik.png"
+                    data-lightbox="bill"
+                    style="display: none;"
+                    id="bill-lightbox-link"
+                  ></a>
+
+                  <!-- Actual image with click event to trigger lightbox -->
+                  <img
+                    src="img/bil_elektrik.png"
+                    alt="Bill Image"
+                    class="img-fluid"
+                    style="max-height: 200px; cursor: pointer;"
+                    onclick="document.getElementById('bill-lightbox-link').click();"
+                  />
+                </div>
+              </div>
+              <div class="mt-3 text-center">
+                <!-- Button for Approve/Reject (Centered) -->
+                <div class="gap-2">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    onclick="alert('User details approved!');"
+                  >
+                    Approve
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    onclick="alert('User details rejected!');"
+                  >
+                    Reject
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lightbox Library -->
+      <script
+        src="${pageContext.request.contextPath}js/lightbox.min.js"
+        integrity="sha512-Pg4Xe3SgHvVJuZJBwh1s+fCeXpxN3BEwtA+pPck3h37OomXj2OvNiV8UcwWE5SP9ozI3fjPh93ZlpBf0TsqbPQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      ></script>
+    </main>
+
+    <footer
+      class="bg-dark text-white text-center py-3 mt-auto"
+      style="background-color: #41a0ff !important"
+    >
+      <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

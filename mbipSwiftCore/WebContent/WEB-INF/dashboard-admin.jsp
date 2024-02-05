@@ -13,7 +13,7 @@
     style="background-color: #f96023 !important"
   >
     <div class="container text-end">
-      <a href="#" class="btn btn-primary btn-lg text-white">Logout</a>
+      <a href="${pageContext.request.contextPath}/" class="btn btn-primary btn-lg text-white">Logout</a>
     </div>
     <div class="mr-1 col-1">
       <span id="usernamePlaceholder">Admin</span>
@@ -74,7 +74,7 @@
       </table>
         <!-- Card 1 -->
         <div class="col-md-4 mb-3">
-          <a href="your_target_url_for_card_1" class="text-decoration-none">
+          <a href="${pageContext.request.contextPath}/admin/electricValidation" class="text-decoration-none">
             <div class="card w-100 mx-auto">
               <div class="card-body text-center" style="height: 150px">
                 <!-- Adjust the height as needed -->
