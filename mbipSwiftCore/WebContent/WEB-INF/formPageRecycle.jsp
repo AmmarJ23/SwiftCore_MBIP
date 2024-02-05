@@ -8,6 +8,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/formStyle.css" />
     <title>Recycle Form</title>
 </head>
@@ -30,31 +31,48 @@
             <div name="row">
 
                 <div class="container">
-                    Recycle Consumption
+                    Recycle Consumption </br>
+                    
+                    <label for="invoiceNo" class="col-sm-2 col-form-label">Invoice Number: </label>
                     <input type="text" placeholder="Invoice number" name="invoiceNo">
+                    
+                    <label for="usage" class="col-sm-2 col-form-label">Usage: </label>
                     <input type="text" placeholder="Usage value: kg" name="usage">
+                    
                     <input type="hidden" value="${month}" name="month">
-                    <button class="upload-button">Click here to upload <br /> your bill's image</button>
+                    
+                    <label for="error" class="col-sm-2 col-form-label" style="color: red;"> ${errorMsg} </label>
+                    
+                    <label for="usage" class="col-sm-2 col-form-label">Bill Image: </label>
+					<input type="file" name="billImg">
                     <button class="form-submit" type="submit">Submit</button>
                 </div>
             </div>
         </form>
         
         <% } else { %>
+        
+        <br>
 
         <form action="${pageContext.request.contextPath}/recycle/update">
 
-            <div name="row">
 
                 <div class="container">
-                    Recycle Consumption
-                    <input type="text"  name="invoiceNo" value="<%= e.getNoInvoice() %>">
-                    <input type="text"  name="usage" value="<%= e.getConsumption() %>">
+                    Recycle Consumption </br>
+                    <label for="invoiceNo" class="col-sm-2 col-form-label">Invoice Number: </label> 
+                    <input type="text"  name="invoiceNo" value="<%= e.getNoInvoice() %>" required> </br>
+                    
+                    <label for="usage" class="col-sm-2 col-form-label">Usage: </label>
+                    <input type="text"  name="usage" value="<%= e.getConsumption() %>" required> </br>
+                    
                     <input type="hidden" value="${month}" name="month">
-                    <button class="upload-button">Click here to upload <br /> your bill's image</button>
-                    <button class="form-submit" type="submit">Submit</button>
+                    
+                    <label for="error" class="col-sm-2 col-form-label" style="color: red;"> ${errorMsg} </label>
+                    
+					<label for="usage" class="col-sm-2 col-form-label">Bill Image: </label>
+					<input type="file" name="billImg">
+                    <button class="form-submit" type="submit">Update</button>
                 </div>
-            </div>
         </form>
         
         <% } %>

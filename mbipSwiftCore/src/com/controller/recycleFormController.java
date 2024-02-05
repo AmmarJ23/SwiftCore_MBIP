@@ -9,21 +9,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model.Recycle;
-
 import dbUtil.recycleDAO;
+import com.controller.UserController;
 
 @RequestMapping("/recycle")
 @Controller
 public class recycleFormController {
 
 	@RequestMapping("/form")
-	public ModelAndView formPage() {
-		ModelAndView page = new ModelAndView("monthSelect");
-		
-		page.addObject("formType","recycle");
-		
-		return page;
-		
+	public ModelAndView formPage(HttpSession session) {
+	    ModelAndView page = new ModelAndView("monthSelect");
+	    
+	    String[] monthColour = UserController.monthColour(session);
+	   
+	    page.addObject("monthColour", monthColour);
+	    
+	    page.addObject("formType", "recycle");
+	    
+	    return page;
 	}
 	
 	@RequestMapping("/month")
@@ -38,9 +41,10 @@ public class recycleFormController {
 		page.addObject("month", selectedMonth);
 		page.addObject("eObj", e);
 		
-		return page;
-		
+		return page;		
 	}
+		
+	
 	
 	@RequestMapping("/add")
 	public ModelAndView addE(HttpServletRequest request ,HttpSession session) {
@@ -50,13 +54,28 @@ public class recycleFormController {
 		
 		Recycle e = new Recycle();
 		e.setNoInvoice(request.getParameter("invoiceNo"));
-		e.setConsumption(Double.parseDouble(request.getParameter("usage")));
+		
+		
+		String usageInput = request.getParameter("usage");
+		if(checkDouble(usageInput) == true) {
+			e.setConsumption(Double.parseDouble(usageInput));
+		} else {
+			ModelAndView formPage = new ModelAndView("formPageRecycle");
+			formPage.addObject("errorMsg", "Incorrect Data Type");
+			return formPage;
+		}
+		
+		
 		e.setMonth(request.getParameter("month"));
 		e.setUsername((String) session.getAttribute("username"));
 		e.setCarbonFootprint(e.getConsumption() * carbonFactor);
 		
 		recycleDAO eDao = new recycleDAO();
 		eDao.add(e);
+		
+		String[] monthColour = UserController.monthColour(session);
+		   
+	    page.addObject("monthColour", monthColour);
 	
 		return page;
 	}
@@ -66,14 +85,25 @@ public class recycleFormController {
 		ModelAndView page = new ModelAndView("monthSelect");
 		recycleDAO eDao = new recycleDAO();
 		
-		Double carbonFactor = 2.860;
+		Double carbonFactor = 0.584;
 		
 		Recycle e1 = eDao.get(request.getParameter("month"), (String) session.getAttribute("username"));
 		
 		Recycle e2 = new Recycle();
 		e2.setNoInvoice(request.getParameter("invoiceNo"));
-		e2.setConsumption(Double.parseDouble(request.getParameter("usage")));
 		
+		String usageInput = request.getParameter("usage");
+		if(checkDouble(usageInput) == true) {
+			e2.setConsumption(Double.parseDouble(usageInput));
+		} else {
+			ModelAndView formPage = new ModelAndView("formPageRecycle");
+			formPage.addObject("errorMsg", "Incorrect Data Type");
+			return formPage;
+		}
+		
+		String[] monthColour = UserController.monthColour(session);
+		   
+	    page.addObject("monthColour", monthColour);
 		
 		if((e1.getNoInvoice() == e2.getNoInvoice()) && (e1.getConsumption() == e2.getConsumption())) {
 			return page;
@@ -89,5 +119,14 @@ public class recycleFormController {
 		}
 
 	}
+	
+	 public boolean checkDouble(String input) {
+	        try {
+	            Double.parseDouble(input);
+	            return true;
+	        } catch (NumberFormatException e) {
+	            return false;
+	        }
+	    }
 	
 }

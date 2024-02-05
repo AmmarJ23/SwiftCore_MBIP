@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/formStyle.css" />
-    <title>Document</title>
+    <title>Electric Form</title>
 </head>
 
 <body>

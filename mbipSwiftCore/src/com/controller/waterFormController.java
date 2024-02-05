@@ -10,19 +10,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.model.Water;
 import dbUtil.waterDAO;
+import com.controller.UserController;
 
 @RequestMapping("/water")
 @Controller
 public class waterFormController {
 	
 	@RequestMapping("/form")
-	public ModelAndView formPage() {
-		ModelAndView page = new ModelAndView("monthSelect");
-		
-		page.addObject("formType","water");
-		
-		return page;
-		
+	public ModelAndView formPage(HttpSession session) {
+	    ModelAndView page = new ModelAndView("monthSelect");
+	    
+	    String[] monthColour = UserController.monthColour(session);
+	   
+	    page.addObject("monthColour", monthColour);
+	    
+	    page.addObject("formType", "water");
+	    
+	    return page;
 	}
 	
 	@RequestMapping("/month")
@@ -49,13 +53,28 @@ public class waterFormController {
 		
 		Water e = new Water();
 		e.setNoInvoice(request.getParameter("invoiceNo"));
-		e.setConsumption(Double.parseDouble(request.getParameter("usage")));
+		
+		
+		String usageInput = request.getParameter("usage");
+		if(checkDouble(usageInput) == true) {
+			e.setConsumption(Double.parseDouble(usageInput));
+		} else {
+			ModelAndView formPage = new ModelAndView("formPageWater");
+			formPage.addObject("errorMsg", "Incorrect Data Type");
+			return formPage;
+		}
+		
+		
 		e.setMonth(request.getParameter("month"));
 		e.setUsername((String) session.getAttribute("username"));
 		e.setCarbonFootprint(e.getConsumption() * carbonFactor);
 		
 		waterDAO eDao = new waterDAO();
 		eDao.add(e);
+		
+		String[] monthColour = UserController.monthColour(session);
+		   
+	    page.addObject("monthColour", monthColour);
 	
 		return page;
 	}
@@ -65,14 +84,25 @@ public class waterFormController {
 		ModelAndView page = new ModelAndView("monthSelect");
 		waterDAO eDao = new waterDAO();
 		
-		Double carbonFactor = 0.419;
+		Double carbonFactor = 0.584;
 		
 		Water e1 = eDao.get(request.getParameter("month"), (String) session.getAttribute("username"));
 		
 		Water e2 = new Water();
 		e2.setNoInvoice(request.getParameter("invoiceNo"));
-		e2.setConsumption(Double.parseDouble(request.getParameter("usage")));
 		
+		String usageInput = request.getParameter("usage");
+		if(checkDouble(usageInput) == true) {
+			e2.setConsumption(Double.parseDouble(usageInput));
+		} else {
+			ModelAndView formPage = new ModelAndView("formPageWater");
+			formPage.addObject("errorMsg", "Incorrect Data Type");
+			return formPage;
+		}
+		
+		String[] monthColour = UserController.monthColour(session);
+		   
+	    page.addObject("monthColour", monthColour);
 		
 		if((e1.getNoInvoice() == e2.getNoInvoice()) && (e1.getConsumption() == e2.getConsumption())) {
 			return page;
@@ -89,6 +119,13 @@ public class waterFormController {
 
 	}
 	
-	
+	 public boolean checkDouble(String input) {
+	        try {
+	            Double.parseDouble(input);
+	            return true;
+	        } catch (NumberFormatException e) {
+	            return false;
+	        }
+	    }
 
 }

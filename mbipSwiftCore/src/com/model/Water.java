@@ -8,7 +8,14 @@ public class Water {
     private String month;
     private Double carbonFootprint;
     private String username;
+    private String status;
     
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getId() {
 		return id;
 	}
@@ -45,5 +52,6 @@ public class Water {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 
 }
