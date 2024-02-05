@@ -11,17 +11,16 @@ public class waterDAO {
 	JdbcTemplate jdbct = new JdbcTemplate(dbDataSource.getDataSource());
 	
 	public void add(Water e) {
-		String sql = "INSERT INTO `electricity_consumption` ( `no_invoice`, `consumption`, `month`, `carbon_footprint`, `username`) VALUES (?,?,?,?,?)";
-		Object [] args = {e.getNoInvoice(), e.getConsumption(), e.getMonth(), e.getCarbonFootprint(), e.getUsername()};
+		String sql = "INSERT INTO `water_consumption` ( `no_invoice`, `consumption`, `month`, `carbon_footprint`, `username`, `status`) VALUES (?,?,?,?,?,?)";
+		Object [] args = {e.getNoInvoice(), e.getConsumption(), e.getMonth(), e.getCarbonFootprint(), e.getUsername(), "submitted"};
 		jdbct.update(sql, args);
 	}
 	
 	public void update(Water e) {
-	    String sql = "UPDATE `electricity_consumption` SET `no_invoice`=?, `consumption`=?, `carbon_footprint`=? WHERE `month`=? AND `username`=?";
+	    String sql = "UPDATE `water_consumption` SET `no_invoice`=?, `consumption`=?, `carbon_footprint`=? WHERE `month`=? AND `username`=?";
 	    Object[] args = {e.getNoInvoice(), e.getConsumption(), e.getCarbonFootprint(), e.getMonth(), e.getUsername()};
 	    jdbct.update(sql, args);
 	}
-
 	
 	public Water get(String month, String username) {
 		String sql = "SELECT * FROM electricity_consumption WHERE MONTH=? AND USERNAME=?";
@@ -31,6 +30,17 @@ public class waterDAO {
 		} catch (EmptyResultDataAccessException e)
 		{
 			return null;
+		}
+	}
+	
+	public double getCarbonEmission(String month, String username) {
+		String sql = "SELECT carbon_footprint FROM water_consumption WHERE MONTH=? AND USERNAME=?";
+		try {
+			double e = jdbct.queryForObject(sql, Double.class, month, username);
+			return e;
+		} catch (EmptyResultDataAccessException e)
+		{
+			return 0.0;
 		}
 	}
 	
