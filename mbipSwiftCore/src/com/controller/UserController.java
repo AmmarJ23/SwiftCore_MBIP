@@ -146,6 +146,38 @@ public class UserController {
 		return page;
 	}
 	
+	@RequestMapping("/personalInformationUpdate")
+	public ModelAndView updatePersonalInformation(HttpServletRequest request, HttpSession session) {
+	    ModelAndView page = new ModelAndView("dashboard-user");
+
+	    User user = new User();
+
+	    user.setUsername(request.getParameter("username"));
+	    user.setPhoneNumber(request.getParameter("phoneNumber"));
+
+	    String address = request.getParameter("address1") + ", " + request.getParameter("address2");
+	    user.setAddress(address);
+
+	    user.setState(request.getParameter("state"));
+	    user.setPostcode(request.getParameter("postcode"));
+	    user.setNoResidents(request.getParameter("noResidents"));
+	    user.setUserType(request.getParameter("user-type"));
+	    user.setBuildingType(request.getParameter("building-type"));
+
+	    userDAO uDao = new userDAO();
+
+	    int rowAffected = uDao.updateUserInformation(user);
+	    
+	    Electricity [] monthCarbonElectric = monthEmission(session);
+		
+		page.addObject( "monthCarbonElectric", monthCarbonElectric);
+
+	    page.addObject("user", user);
+
+	    return page;
+	}
+
+	
 	
 	@RequestMapping("/formPage")
 	public ModelAndView formPage()
