@@ -23,6 +23,14 @@ public class UserController {
 		User user = new User();
 		user.setUsername(request.getParameter("username"));
 		user.setPassword(request.getParameter("password"));
+		
+		//Check for admin
+		if (user.getUsername().equals("admin") && user.getPassword().equals("admin123")) {
+			ModelAndView adminPage = new ModelAndView("dashboard-admin");
+			return adminPage;
+		}
+		
+		
 		boolean validC = false;
 		
 		userDAO uDao = new userDAO();

@@ -19,7 +19,7 @@
     style="background-color: #41a0ff !important"
   >
     <div class="container text-end">
-      <a href="#" class="btn btn-primary btn-lg text-white">Logout</a>
+      <a href="${pageContext.request.contextPath}/" class="btn btn-primary btn-lg text-white">Logout</a>
     </div>
     
     
