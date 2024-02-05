@@ -133,9 +133,9 @@ public class UserController {
 		Water [] monthCarbonWater = monthEmissionWater(session);
 		Recycle [] monthCarbonRecycle = monthEmissionRecycle(session);
 		
-		page.addObject( "monthCarbonElectric", monthCarbonElectric);
-		page.addObject( "monthCarbonWater", monthCarbonWater);
-		page.addObject( "monthCarbonRecycle", monthCarbonRecycle);
+		dashboardPage.addObject( "monthCarbonElectric", monthCarbonElectric);
+		dashboardPage.addObject( "monthCarbonWater", monthCarbonWater);
+		dashboardPage.addObject( "monthCarbonRecycle", monthCarbonRecycle);
 		
 //		dashboardPage.addObject("username" ,user.getUsername());
 		session.setAttribute("username", user.getUsername());
