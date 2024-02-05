@@ -46,6 +46,8 @@ public class UserController {
 		userDAO uDao = new userDAO();
 		
 		Electricity [] monthCarbonElectric = new Electricity[6];
+		Water [] monthCarbonWater = new Water[6];
+		Recycle [] monthCarbonRecycle = new Recycle[6];
 		
 		boolean valid = uDao.loginVerification(user);
 		
@@ -56,6 +58,8 @@ public class UserController {
 			pageName = "dashboard-user";
 			session.setAttribute("username", user.getUsername());
 			monthCarbonElectric = monthEmission(session);
+			monthCarbonWater = monthEmissionWater(session);
+			monthCarbonRecycle = monthEmissionRecycle(session);
 			
 			
 			validC = true;
@@ -65,7 +69,11 @@ public class UserController {
 		
 		ModelAndView dashboardPage = new ModelAndView(pageName);
 		
-		if(validC == true){ dashboardPage.addObject( "monthCarbonElectric", monthCarbonElectric);}
+		if(validC == true){ 
+			dashboardPage.addObject( "monthCarbonElectric", monthCarbonElectric);
+			dashboardPage.addObject( "monthCarbonWater", monthCarbonWater);
+			dashboardPage.addObject( "monthCarbonRecycle", monthCarbonRecycle);
+			}
 		
 		return dashboardPage;
 	}
@@ -122,8 +130,12 @@ public class UserController {
 		int rowAffected = uDao.updateUserInformation(user);
 		
 		Electricity [] monthCarbonElectric = monthEmission(session);
+		Water [] monthCarbonWater = monthEmissionWater(session);
+		Recycle [] monthCarbonRecycle = monthEmissionRecycle(session);
 		
-		dashboardPage.addObject( "monthCarbonElectric", monthCarbonElectric);
+		page.addObject( "monthCarbonElectric", monthCarbonElectric);
+		page.addObject( "monthCarbonWater", monthCarbonWater);
+		page.addObject( "monthCarbonRecycle", monthCarbonRecycle);
 		
 //		dashboardPage.addObject("username" ,user.getUsername());
 		session.setAttribute("username", user.getUsername());
@@ -169,8 +181,12 @@ public class UserController {
 	    int rowAffected = uDao.updateUserInformation(user);
 	    
 	    Electricity [] monthCarbonElectric = monthEmission(session);
+		Water [] monthCarbonWater = monthEmissionWater(session);
+		Recycle [] monthCarbonRecycle = monthEmissionRecycle(session);
 		
 		page.addObject( "monthCarbonElectric", monthCarbonElectric);
+		page.addObject( "monthCarbonWater", monthCarbonWater);
+		page.addObject( "monthCarbonRecycle", monthCarbonRecycle);
 
 	    page.addObject("user", user);
 
@@ -192,8 +208,12 @@ public class UserController {
 		ModelAndView page = new ModelAndView("dashboard-user");
 		
 		Electricity [] monthCarbonElectric = monthEmission(session);
+		Water [] monthCarbonWater = monthEmissionWater(session);
+		Recycle [] monthCarbonRecycle = monthEmissionRecycle(session);
 		
 		page.addObject( "monthCarbonElectric", monthCarbonElectric);
+		page.addObject( "monthCarbonWater", monthCarbonWater);
+		page.addObject( "monthCarbonRecycle", monthCarbonRecycle);
 		
 		return page;
 	}

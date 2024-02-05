@@ -81,7 +81,10 @@
 		    // Use a for loop to iterate over the range
 		    String [] monthList = {"January", "February", "March", "April", "May", "June"};
 			Electricity[] monthCarbonElectric = (Electricity[]) request.getAttribute("monthCarbonElectric");
+			Recycle[] monthCarbonRecycle = (Recycle[]) request.getAttribute("monthCarbonRecycle");
+			Water[] monthCarbonWater = (Water[]) request.getAttribute("monthCarbonWater");
 		    for (int i = 0; i <= 5; i++) {
+		    	double total = 0.0;
 		%>
 		
 		<!-- Emission Card -->
@@ -103,6 +106,7 @@
                 %>
                                 <%= monthCarbonElectric[i].getCarbonFootprint() %> kg
                 <%
+                            total = total + monthCarbonElectric[i].getCarbonFootprint();
                             } else if ("submitted".equals(status)) {
                 %>
                                 Waiting for validation
@@ -120,9 +124,67 @@
                     }
                 %>
             </p>
-          	<p>Total Water Carbon Emission: 100 kg</p>
-          	<p>Total Recycle Carbon Emission: 100 kg</p>
-            <p>Total Carbon Emission: 100 kg</p>
+          	<p>Total Water Carbon Emission: 
+          		<%
+                    if (monthCarbonWater[i] == null) {
+                %>
+                    Not Submitted
+                <%
+                    } else {
+                        String status = monthCarbonWater[i].getStatus();
+                        if (status != null) {
+                            if ("validated".equals(status)) {
+                %>
+                                <%= monthCarbonWater[i].getCarbonFootprint() %> kg
+                <%
+                			total = total + monthCarbonWater[i].getCarbonFootprint();
+                            } else if ("submitted".equals(status)) {
+                %>
+                                Waiting for validation
+                <%
+                            } else {
+                %>
+                               <span style="color: red;" >Form Submission Rejected: Please Check Details Again</span> 
+                <%
+                            }
+                        } else {
+                %>
+                            Not Submitted
+                <%
+                        }
+                    }
+                %></p>
+          	<p>Total Recycle Carbon Emission: 
+          		<%
+                    if (monthCarbonRecycle[i] == null) {
+                %>
+                    Not Submitted
+                <%
+                    } else {
+                        String status = monthCarbonRecycle[i].getStatus();
+                        if (status != null) {
+                            if ("validated".equals(status)) {
+                %>
+                                <%= monthCarbonRecycle[i].getCarbonFootprint() %> kg
+                <%
+                		total = total + monthCarbonRecycle[i].getCarbonFootprint();
+                            } else if ("submitted".equals(status)) {
+                %>
+                                Waiting for validation
+                <%
+                            } else {
+                %>
+                               <span style="color: red;" >Form Submission Rejected: Please Check Details Again</span> 
+                <%
+                            }
+                        } else {
+                %>
+                            Not Submitted
+                <%
+                        }
+                    }
+                %></p>
+            <p>Total Carbon Emission: <%=total %> kg</p>
             
           </div>
           

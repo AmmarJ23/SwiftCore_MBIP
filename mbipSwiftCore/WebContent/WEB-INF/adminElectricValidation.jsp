@@ -44,9 +44,9 @@
         class="container d-flex align-items-center"
         style="margin-left: 50px"
       >
-        <img src="${pageContext.request.contextPath}/img/mbip_logo.png" alt="Logo" style="width: 65px" />
+        <img src="${pageContext.request.contextPath}/resources/img/mbip_logo.png" alt="Logo" style="width: 65px" />
         <img
-          src="${pageContext.request.contextPath}/img/iskandar-puteri-low-carbon.png"
+          src="${pageContext.request.contextPath}/resources/img/iskandar-puteri-low-carbon.png"
           alt="LogoTitle"
           style="width: 100px"
         />
@@ -109,12 +109,19 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <% for (com.model.Electricity electricity : electricityList) { %>
-			            <tr>
-			                <td><%= electricity.getUsername() %></td>
-			                <td><%= electricity.getMonth() %></td>
-			                <td><%= electricity.getStatus() %></td>
-			            </tr>
+                    <% 
+                    
+                    for (com.model.Electricity electricity : electricityList) { 
+                    
+                    	String username = electricity.getUsername();
+                    	String noInvoice = electricity.getNoInvoice();
+                    	Double consumption = electricity.getConsumption();
+                    %>
+			            <tr onclick="displayUserDetails('<%= username %>', '<%= noInvoice %>', <%= consumption %>);">
+						   <td><%= electricity.getUsername() %></td>
+						   <td><%= electricity.getMonth() %></td>
+						   <td><%= electricity.getStatus() %></td>
+						</tr>
 			        <% } %>
                 </tbody>
               </table>
@@ -127,12 +134,12 @@
           <div class="card">
             <div class="card-body">
               <div class="row">
-                <div class="col-10">
+                <div  id="userDetailsCard" class="col-10">
                   <ul class="list-group">
                     <li class="list-group-item active">User Details</li>
-                    <li class="list-group-item">Username: JohnDoe</li>
-                    <li class="list-group-item">Invoice No: INV123</li>
-                    <li class="list-group-item">Usage: 150 kWh</li>
+                    <li class="list-group-item">Username:</li>
+                    <li class="list-group-item">Invoice No:</li>
+                    <li class="list-group-item">Usage:</li>
                   </ul>
                 </div>
                 <div class="col-2">
@@ -146,7 +153,7 @@
 
                   <!-- Actual image with click event to trigger lightbox -->
                   <img
-                    src="img/bil_elektrik.png"
+                    src="${pageContext.request.contextPath}/resources/img/bil_elektrik.png"
                     alt="Bill Image"
                     class="img-fluid"
                     style="max-height: 200px; cursor: pointer;"
@@ -196,4 +203,20 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
+  
+  <script>
+   function displayUserDetails(username, noInvoice, consumption) {
+      // Update the content of the second card dynamically
+      var userDetailsCard = document.getElementById('userDetailsCard');
+      userDetailsCard.innerHTML =
+      '<ul class="list-group">' +
+      '<li class="list-group-item active">User Details</li>' +
+      '<li class="list-group-item">Username: ' + username + '</li>' +
+      '<li class="list-group-item">Invoice No: ' +  noInvoice + '</li>' +
+      '<li class="list-group-item">Usage: ' + consumption + ' kWh</li>' +
+      '</ul>' ;
+   }
+</script>
+
+  
 </html>
