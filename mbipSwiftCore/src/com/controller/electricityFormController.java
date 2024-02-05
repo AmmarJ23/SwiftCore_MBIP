@@ -55,7 +55,18 @@ public class electricityFormController {
 		
 		Electricity e = new Electricity();
 		e.setNoInvoice(request.getParameter("invoiceNo"));
-		e.setConsumption(Double.parseDouble(request.getParameter("usage")));
+		
+		
+		String usageInput = request.getParameter("usage");
+		if(checkDouble(usageInput) == true) {
+			e.setConsumption(Double.parseDouble(usageInput));
+		} else {
+			ModelAndView formPage = new ModelAndView("formPageElectric");
+			formPage.addObject("errorMsg", "Incorrect Data Type");
+			return formPage;
+		}
+		
+		
 		e.setMonth(request.getParameter("month"));
 		e.setUsername((String) session.getAttribute("username"));
 		e.setCarbonFootprint(e.getConsumption() * carbonFactor);
@@ -81,7 +92,15 @@ public class electricityFormController {
 		
 		Electricity e2 = new Electricity();
 		e2.setNoInvoice(request.getParameter("invoiceNo"));
-		e2.setConsumption(Double.parseDouble(request.getParameter("usage")));
+		
+		String usageInput = request.getParameter("usage");
+		if(checkDouble(usageInput) == true) {
+			e2.setConsumption(Double.parseDouble(usageInput));
+		} else {
+			ModelAndView formPage = new ModelAndView("formPageElectric");
+			formPage.addObject("errorMsg", "Incorrect Data Type");
+			return formPage;
+		}
 		
 		String[] monthColour = UserController.monthColour(session);
 		   
@@ -101,5 +120,14 @@ public class electricityFormController {
 		}
 
 	}
+	
+	 public boolean checkDouble(String input) {
+	        try {
+	            Double.parseDouble(input);
+	            return true;
+	        } catch (NumberFormatException e) {
+	            return false;
+	        }
+	    }
 
 }

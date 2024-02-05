@@ -40,6 +40,9 @@
                     <input type="text" placeholder="Usage value: kg" name="usage">
                     
                     <input type="hidden" value="${month}" name="month">
+                    
+                    <label for="error" class="col-sm-2 col-form-label" style="color: red;"> ${errorMsg} </label>
+                    
                     <label for="usage" class="col-sm-2 col-form-label">Bill Image: </label>
 					<input type="file" name="billImg">
                     <button class="form-submit" type="submit">Submit</button>
@@ -57,12 +60,14 @@
                 <div class="container">
                     Electricity Consumption </br>
                     <label for="invoiceNo" class="col-sm-2 col-form-label">Invoice Number: </label> 
-                    <input type="text"  name="invoiceNo" value="<%= e.getNoInvoice() %>"> </br>
+                    <input type="text"  name="invoiceNo" value="<%= e.getNoInvoice() %>" required> </br>
                     
                     <label for="usage" class="col-sm-2 col-form-label">Usage: </label>
-                    <input type="text"  name="usage" value="<%= e.getConsumption() %>"> </br>
+                    <input type="text"  name="usage" value="<%= e.getConsumption() %>" required> </br>
                     
                     <input type="hidden" value="${month}" name="month">
+                    
+                    <label for="error" class="col-sm-2 col-form-label" style="color: red;"> ${errorMsg} </label>
                     
 					<label for="usage" class="col-sm-2 col-form-label">Bill Image: </label>
 					<input type="file" name="billImg">

@@ -33,5 +33,36 @@ public class recycleDAO {
 			return null;
 		}
 	}
+	
+	public int[] getCountOfEntries() {
+		
+		String submittedSql = "SELECT COUNT(*) FROM recycle_activity WHERE status = 'submitted'";
+		String validatedSql = "SELECT COUNT(*) FROM recycle_activity WHERE status = 'validated'";
+		String rejectedSql = "SELECT COUNT(*) FROM recycle_activity WHERE status = 'rejected'";
+        int submittedCount = 0;
+        int validatedCount = 0;
+        int rejectedCount = 0;
+		
+		try {
+			submittedCount = jdbct.queryForObject(submittedSql, Integer.class);
+		}catch (EmptyResultDataAccessException e) {
+			submittedCount = 0;
+		}
+		
+		try {
+			rejectedCount = jdbct.queryForObject(rejectedSql, Integer.class);
+		}catch (EmptyResultDataAccessException e) {
+			rejectedCount = 0;
+		}
+
+		try {
+			validatedCount = jdbct.queryForObject(validatedSql, Integer.class);
+		}catch (EmptyResultDataAccessException e) {
+			validatedCount = 0;
+		}
+
+        int[] counts = {submittedCount, validatedCount, rejectedCount};
+        return counts;
+    }
 
 }

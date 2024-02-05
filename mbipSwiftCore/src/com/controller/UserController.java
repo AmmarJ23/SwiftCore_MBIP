@@ -11,6 +11,8 @@ import com.model.User;
 import com.model.Electricity;
 import dbUtil.userDAO;
 import dbUtil.electricityDAO;
+import dbUtil.waterDAO;
+import dbUtil.recycleDAO;
 
 @RequestMapping("/user")
 @Controller
@@ -27,6 +29,11 @@ public class UserController {
 		//Check for admin
 		if (user.getUsername().equals("admin") && user.getPassword().equals("admin123")) {
 			ModelAndView adminPage = new ModelAndView("dashboard-admin");
+			
+			int[] total = getAllEntries();
+			
+			adminPage.addObject("totalSubmission", total);
+			
 			return adminPage;
 		}
 		
@@ -198,5 +205,19 @@ public class UserController {
 	    }
 	    
 	    return monthColour;
+	}
+	
+	public int[] getAllEntries() {
+		int[] submissionE = new electricityDAO().getCountOfEntries();
+		int[] submissionW = new waterDAO().getCountOfEntries();
+		int[] submissionR = new recycleDAO().getCountOfEntries();
+		
+		int[] total = {0,0,0};
+		
+		for(int i=0; i<=2; i++) {
+			total[i] = submissionE[i] + submissionW[i] + submissionR[i];
+		}
+		
+		return total;
 	}
 }

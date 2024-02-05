@@ -66,9 +66,9 @@
         </thead>
         <tbody>
           <tr>
-            <td>100</td>
-            <td>80</td>
-            <td>20</td>
+            <td>${totalSubmission[0]}</td>
+            <td>${totalSubmission[1]}</td>
+            <td>${totalSubmission[2]}</td>
           </tr>
         </tbody>
       </table>
