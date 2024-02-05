@@ -1,3 +1,4 @@
+<%@ page import="com.model.User" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -35,13 +36,26 @@
 </head>
 <body>
 	<div class="overlay">
+	
+	<% String url  = new String();
+	if ( (boolean) request.getAttribute("isSignUp")){
+		
+		url = request.getContextPath()+ "/user/personalInfo";
+		User user = new User(" ", " ", " ", " ", " ", " ", " ", " ", " ", " ");
+	} else
+	{
+		url = request.getContextPath() + "/user/personalInformationUpdate";
+		User user = (User) request.getAttribute("user");
+	}
+	
+	%>
 
-	<form style="background-color: white;" action="<%=request.getContextPath()%>/user/personalInfo">
+	<form style="background-color: white;" action="<%=url%>">
 
 	   <div class="con">
 
 	   <header class="head-form">
-        <img src="<%=request.getContextPath()%>/resources/imgmbip.jpg" alt="gambar mbip" width="100" height="100" title="mbip" >
+        <img src="<%=request.getContextPath()%>/resources/img/mbip.jpg" alt="gambar mbip" width="100" height="100" title="mbip" >
 
 	      <h1>Iskandar Puteri Low Carbon</h1>
 	   </header>
@@ -56,15 +70,15 @@
         <br>
         <hr>
 	         
-        Phone number: <input class="form-input" id="phoneNumber" type="text" placeholder="phone number" name="phoneNumber" required > <br>
+        Phone number: <input class="form-input" id="phoneNumber" type="text" placeholder="phone number" name="phoneNumber" value="${user.getPhoneNumber()}" required > <br>
 
-        Address: <input class="form-input" id="address" type="text" placeholder="address line 1 " name="address1" required >
+        Address: <input class="form-input" id="address" type="text" placeholder="address line 1 " name="address1" value="${user.getAddress()}" required >
 
-        <input class="form-input" id="address2" type="text" placeholder="address line 2 " name="address2" required >
+        <input class="form-input" id="address2" type="text" placeholder="address line 2 " name="address2">
 
-        State: <input class="form-input" id="state-input" type="text" placeholder="state" name="state" required >
+        State: <input class="form-input" id="state-input" type="text" placeholder="state" name="state" value="${user.getState()}" required >
 
-        Postcode: <input class="form-input" id="postcode-input" type="text" placeholder="postcode" name="postcode" required >
+        Postcode: <input class="form-input" id="postcode-input" type="text" placeholder="postcode" name="postcode" value="${user.getPostcode()}" required >
 
         <br>
         <br>
@@ -73,15 +87,15 @@
 
         <hr>
 
-        No. of residents: <input class="form-input" id="state-input" type="text" placeholder="no. of residents" name="noResidents" required > <br>
+        No. of residents: <input class="form-input" id="state-input" type="text" placeholder="no. of residents" name="noResidents" value="${user.getNoResidents() }" required > <br>
 
 		Building type: 
         <select class="form-input" id="building-type" name="building-type" required>
-            <option value="" disabled selected>Select building type</option>
-            <option value="house">House</option>
-            <option value="apartment">Apartment</option>
-            <option value="condo">Condo</option>
-        </select>
+		    <option value="" disabled>Select building type</option>
+		    <option value="house" ${user.getBuildingType() eq 'house' ? 'selected' : ''}>House</option>
+		    <option value="apartment" ${user.getBuildingType() eq 'apartment' ? 'selected' : ''}>Apartment</option>
+		    <option value="condo" ${user.getBuildingType() eq 'condo' ? 'selected' : ''}>Condo</option>
+		</select>
 
         <br>
         <br>
@@ -93,10 +107,10 @@
 		User type:
         <select class="form-input" id="user-type" name ="user-type" required>
             <option value="" disabled selected>Select user type</option>
-            <option value="a1">Housing (high rise)</option>
-            <option value="a2">Housing (landed)</option>
-            <option value="b">Institution</option>
-            <option value="mbip">MBIP staff and dvisions</option>
+            <option value="a1" ${user.getUserType() eq 'a1' ? 'selected' : ''}>Housing (high rise)</option>
+            <option value="a2" ${user.getUserType() eq 'a2' ? 'selected' : ''}>Housing (landed)</option>
+            <option value="b" ${user.getUserType() eq 'b' ? 'selected' : ''}>Institution</option>
+            <option value="mbip" ${user.getUserType() eq 'mbip' ? 'selected' : ''}>MBIP staff and divisions</option>
         </select>
 
         <br>
@@ -105,7 +119,18 @@
 	  
 	   <div class="other">
 
-		<button style="color: white;">Fill in bill's data </button>
+		<% 
+		if ( (boolean) request.getAttribute("isSignUp")){
+			%> <button style="color: white;">Fill in personal information </button> <% 
+		}
+		
+		else{
+			%> <button style="color: white;">Update Information </button> <% 
+		}
+		
+		%>
+
+		
 
 	   </div>
 

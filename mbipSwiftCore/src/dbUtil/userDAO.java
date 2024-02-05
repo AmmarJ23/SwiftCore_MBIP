@@ -36,5 +36,16 @@ public class userDAO {
 	    int rowAffected = jdbct.update(sql, args);
 	    return rowAffected;
 	}
+	
+	public User getUserByUsername(String username) {
+	    String sql = "SELECT * FROM users WHERE username = ?";
+	    
+	    try {
+	        User user = jdbct.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), username);
+	        return user;
+	    } catch (EmptyResultDataAccessException e) {
+	        return null; // User not found
+	    }
+	}
 
 }

@@ -2,6 +2,7 @@ package com.model;
 
 public class User {
 		
+		
 		String username;
 		String email;
 		String password;
@@ -72,5 +73,25 @@ public class User {
 		}
 		public void setUserType(String userType) {
 			this.userType = userType;
+		}
+		
+		public User(String username, String email, String password, String address, String state, String postcode,
+				String noResidents, String buildingType, String userType, String phoneNumber) {
+			super();
+			this.username = username;
+			this.email = email;
+			this.password = password;
+			this.address = address;
+			this.state = state;
+			this.postcode = postcode;
+			this.noResidents = noResidents;
+			this.buildingType = buildingType;
+			this.userType = userType;
+			this.phoneNumber = phoneNumber;
+		}
+		
+		public User()
+		{
+			
 		}
 }

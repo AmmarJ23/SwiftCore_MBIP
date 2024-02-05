@@ -24,7 +24,7 @@
     
     
     <div class="mr-1 col-1">
-    <span>${sessionScope.username}</span>
+    <a href="${pageContext.request.contextPath}/user/personalInformation">${sessionScope.username}</a>
     </div>
   </header>
 

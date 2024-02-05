@@ -74,6 +74,7 @@ public class UserController {
 		int rowAffected = uDao.addUser(user);
 		
 		dashboardPage.addObject("username", user.getUsername());
+		dashboardPage.addObject("isSignUp", true);
 		
 		return dashboardPage;
 	}
@@ -110,6 +111,21 @@ public class UserController {
 		session.setAttribute("username", user.getUsername());
 		
 		return dashboardPage;
+	}
+	
+	@RequestMapping("/personalInformation")
+	public ModelAndView userPersonalInfoDashboard(HttpSession session)
+	{
+		ModelAndView page = new ModelAndView("personal_info");
+		
+		userDAO uDao = new userDAO();
+		
+		User user = uDao.getUserByUsername((String) session.getAttribute("username"));
+		
+		page.addObject("user", user);
+		
+		page.addObject("isSignUp", false);
+		return page;
 	}
 	
 	
@@ -155,20 +171,20 @@ public class UserController {
 	    for (int i = 0; i <= 5; i++) {
 	        if (monthCarbonElectric[i] == null) {
 	            // Handle the case when monthCarbonElectric[i] is null
-	        	monthColour[i] = "background-color: #F68787; width: 130px;";
+	        	monthColour[i] = "background-color: #87CEEB; width: 130px;";
 	        } else {
 	            String status = monthCarbonElectric[i].getStatus();
 	            
 	            if (status != null) {
 	                if ("validated".equals(status)) {
-	                    monthColour[i] = "background-color:#6EBF77; width: 130px;";
+	                    monthColour[i] = "background-color:#4682B4; width: 130px;";
 	                } else if ("submitted".equals(status)) {
-	                    monthColour[i] = "background-color:#6EBF77; width: 130px;";
+	                    monthColour[i] = "background-color:#4682B4; width: 130px;";
 	                } else {
-	                    monthColour[i] = "background-color:#F68787; width: 130px;";
+	                    monthColour[i] = "background-color:#87CEEB; width: 130px;";
 	                }
 	            } else {
-	                monthColour[i] = "background-color: #F68787; width: 130px;";
+	                monthColour[i] = "background-color: #87CEEB; width: 130px;";
 	            }
 	        }
 	    }
