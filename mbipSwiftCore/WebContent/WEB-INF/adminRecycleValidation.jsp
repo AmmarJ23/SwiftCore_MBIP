@@ -1,4 +1,4 @@
-<%@ page import="com.model.Electricity" %>
+<%@ page import="com.model.Recycle" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,7 +95,7 @@
               <br>
               
               <%
-			    List<Electricity> electricityList = (List<Electricity>)request.getAttribute("electricityList");
+			    List<Recycle> electricityList = (List<Recycle>)request.getAttribute("recycleList");
 				%>
 
               <!-- Table -->
@@ -111,7 +111,7 @@
                   <tr>
                     <% 
                     
-                    for (com.model.Electricity electricity : electricityList) { 
+                    for (com.model.Recycle electricity : electricityList) { 
                     
                     	String username = electricity.getUsername();
                     	String noInvoice = electricity.getNoInvoice();
@@ -261,13 +261,13 @@
 
    function approveUserDetails(username, month) {
 	      // Redirect to the specified URL with parameters
-	      var redirectUrl = "${pageContext.request.contextPath}/admin/approveFormElectric?username=" + username + "&month=" + month;
+	      var redirectUrl = "${pageContext.request.contextPath}/admin/approveFormRecycle?username=" + username + "&month=" + month;
 	      window.location.href = redirectUrl;
 	   }
 
    function rejectUserDetails(username, month) {
 	      // Redirect to the specified URL with parameters
-	      var redirectUrl = "${pageContext.request.contextPath}/admin/rejectFormElectric?username=" + username + "&month=" + month;
+	      var redirectUrl = "${pageContext.request.contextPath}/admin/rejectFormRecycle?username=" + username + "&month=" + month;
 	      window.location.href = redirectUrl;
 	   }
 </script>

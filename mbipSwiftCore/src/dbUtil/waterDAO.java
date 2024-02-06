@@ -1,9 +1,12 @@
 package dbUtil;
 
+import java.util.List;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.model.Electricity;
 import com.model.Water;
 
 public class waterDAO {
@@ -74,5 +77,23 @@ public class waterDAO {
         int[] counts = {submittedCount, validatedCount, rejectedCount};
         return counts;
     }
+	
+	public List<Water> getAll() {
+        String sql = "SELECT * FROM water_consumption";
+        List<Water> waterList = jdbct.query(sql, new BeanPropertyRowMapper<>(Water.class));
+        return waterList;
+    }
+	
+	public void approveForm(String username, String month) {
+	    String sql = "UPDATE `water_consumption` SET `status`='validated' WHERE `month`=? AND `username`=?";
+	    Object[] args = {month, username};
+	    jdbct.update(sql, args);
+	}
+
+	public void rejectForm(String username, String month) {
+	    String sql = "UPDATE `water_consumption` SET `status`='rejected' WHERE `month`=? AND `username`=?";
+	    Object[] args = {month, username};
+	    jdbct.update(sql, args);
+	}
 
 }

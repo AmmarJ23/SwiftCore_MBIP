@@ -87,7 +87,7 @@
 
         <!-- Card 2 -->
         <div class="col-md-4 mb-3">
-          <a href="your_target_url_for_card_2" class="text-decoration-none">
+          <a href="${pageContext.request.contextPath}/admin/waterValidation" class="text-decoration-none">
             <div class="card w-100 mx-auto">
               <div class="card-body text-center" style="height: 150px">
                 <!-- Adjust the height as needed -->
@@ -100,7 +100,7 @@
 
         <!-- Card 3 -->
         <div class="col-md-4 mb-3">
-          <a href="your_target_url_for_card_3" class="text-decoration-none">
+          <a href="${pageContext.request.contextPath}/admin/recycleValidation" class="text-decoration-none">
             <div class="card w-100 mx-auto">
               <div class="card-body text-center" style="height: 150px">
                 <!-- Adjust the height as needed -->

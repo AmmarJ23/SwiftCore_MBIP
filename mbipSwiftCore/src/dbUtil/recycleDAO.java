@@ -1,11 +1,14 @@
 package dbUtil;
 
+import java.util.List;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.model.Electricity;
 import com.model.Recycle;
+import com.model.Water;
 
 public class recycleDAO {
 	
@@ -76,5 +79,24 @@ public class recycleDAO {
         int[] counts = {submittedCount, validatedCount, rejectedCount};
         return counts;
     }
+	
+	public List<Recycle> getAll() {
+        String sql = "SELECT * FROM recycle_activity";
+        List<Recycle> recycleList = jdbct.query(sql, new BeanPropertyRowMapper<>(Recycle.class));
+        return recycleList;
+    }
+	
+	public void approveForm(String username, String month) {
+	    String sql = "UPDATE `recycle_activity` SET `status`='validated' WHERE `month`=? AND `username`=?";
+	    Object[] args = {month, username};
+	    jdbct.update(sql, args);
+	}
+
+	public void rejectForm(String username, String month) {
+	    String sql = "UPDATE `recycle_activity` SET `status`='rejected' WHERE `month`=? AND `username`=?";
+	    Object[] args = {month, username};
+	    jdbct.update(sql, args);
+	}
+
 
 }
