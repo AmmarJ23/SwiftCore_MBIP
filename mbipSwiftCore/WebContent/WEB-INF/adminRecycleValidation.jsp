@@ -32,7 +32,7 @@
         <a href="${pageContext.request.contextPath}/admin/dashboard" class="btn btn-primary btn-lg text-white">Dashboard</a>
       </div>
       <div class="mr-1 col-1">
-        <span id="usernamePlaceholder">Username</span>
+        <span id="usernamePlaceholder">Admin</span>
       </div>
     </header>
 
