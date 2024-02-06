@@ -16,9 +16,22 @@ import dbUtil.electricityDAO;
 import dbUtil.recycleDAO;
 import dbUtil.waterDAO;
 
+import com.controller.UserController;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+	
+	@RequestMapping("/dashboard")
+	public ModelAndView adminDashboard() {
+		ModelAndView page = new ModelAndView("dashboard-admin");
+		
+		int[] total = UserController.getAllEntries();
+		
+		page.addObject("totalSubmission", total);
+		
+		return page;
+	}
 
 	@RequestMapping("electricValidation")
 	public ModelAndView electricValidation() {

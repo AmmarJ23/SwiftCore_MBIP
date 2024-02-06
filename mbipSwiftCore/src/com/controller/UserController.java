@@ -350,7 +350,7 @@ public class UserController {
 	    return monthColour;
 	}
 	
-	public int[] getAllEntries() {
+	public static int[] getAllEntries() {
 		int[] submissionE = new electricityDAO().getCountOfEntries();
 		int[] submissionW = new waterDAO().getCountOfEntries();
 		int[] submissionR = new recycleDAO().getCountOfEntries();

@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Electricity Form</title>
+    <title>Recycle Form</title>
     <link
       href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
       rel="stylesheet"
@@ -26,10 +26,10 @@
   <body class="d-flex flex-column min-vh-100">
     <header
       class="bg-dark text-white text-center py-3 d-flex justify-content-between align-items-center"
-      style="background-color: #41a0ff !important"
+      style="background-color: #f96023 !important"
     >
       <div class="container text-end">
-        <a href="#" class="btn btn-primary btn-lg text-white">Logout</a>
+        <a href="${pageContext.request.contextPath}/admin/dashboard" class="btn btn-primary btn-lg text-white">Dashboard</a>
       </div>
       <div class="mr-1 col-1">
         <span id="usernamePlaceholder">Username</span>
@@ -51,7 +51,7 @@
           style="width: 100px"
         />
         <h1 class="text-center" style="width: 400px; margin: 0 auto">
-          Electricity Form
+          Recycle Form
         </h1>
       </div>
     </header>
@@ -197,7 +197,7 @@
 
     <footer
       class="bg-dark text-white text-center py-3 mt-auto"
-      style="background-color: #41a0ff !important"
+      style="background-color: #f96023 !important"
     >
       <p>&copy; 2024 Your Company. All rights reserved.</p>
     </footer>
