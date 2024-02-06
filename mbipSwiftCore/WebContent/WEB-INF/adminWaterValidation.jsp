@@ -28,8 +28,8 @@
       class="bg-dark text-white text-center py-3 d-flex justify-content-between align-items-center"
       style="background-color: #f96023 !important"
     >
-      <div class="container text-end">
-        <a href="${pageContext.request.contextPath}/admin/dashboard" class="btn btn-primary btn-lg text-white">Dashboard</a>
+      <div class="mr-1 col-1">
+        <a href="${pageContext.request.contextPath}/admin/dashboard" class="btn btn-primary btn-lg text-white" style="background-color:orange; border:orange">Dashboard</a>
       </div>
       <div class="mr-1 col-1">
         <span id="usernamePlaceholder">Admin</span>
@@ -62,37 +62,6 @@
         <div class="col-md-6 mb-3">
           <div class="card">
             <div class="card-body">
-              <!-- Search Bar with Clickable Search Icon -->
-              <div class="input-group mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Search by username"
-                  aria-label="Search by username"
-                  aria-describedby="basic-addon2"
-                />
-                <a
-                  href="#"
-                  class="input-group-text"
-                  id="basic-addon2"
-                  onclick="alert('Search icon clicked!');"
-                >
-                  <i class="bi bi-search"></i>
-                </a>
-              </div>
-              
-              <div>
-              User type:
-        <select class="form-input" id="user-type" name ="user-type" required>
-            <option value="" disabled selected>Select user type</option>
-            <option value="a1" ${user.getUserType() eq 'a1' ? 'selected' : ''}>Housing (high rise)</option>
-            <option value="a2" ${user.getUserType() eq 'a2' ? 'selected' : ''}>Housing (landed)</option>
-            <option value="b" ${user.getUserType() eq 'b' ? 'selected' : ''}>Institution</option>
-            <option value="mbip" ${user.getUserType() eq 'mbip' ? 'selected' : ''}>MBIP staff and divisions</option>
-        </select>
-              </div>
-              
-              <br>
               
               <%
 			    List<Water> electricityList = (List<Water>)request.getAttribute("waterList");
@@ -117,12 +86,21 @@
                     	String noInvoice = electricity.getNoInvoice();
                     	Double consumption = electricity.getConsumption();
                     	String month = electricity.getMonth();
-                    %>
-			            <tr onclick="displayUserDetails('<%= username %>', '<%= noInvoice %>', <%= consumption %>, '<%=month%>');">
-						   <td><%= electricity.getUsername() %></td>
-						   <td><%= electricity.getMonth() %></td>
-						   <td><%= electricity.getStatus() %></td>
-						</tr>
+                    	String status = electricity.getStatus();
+                    	
+                    	// Set the color based on the status
+				        String statusColor = "";
+				        if ("validated".equalsIgnoreCase(status)) {
+				            statusColor = "text-success"; // Green color for validated
+				        } else if ("rejected".equalsIgnoreCase(status)) {
+				            statusColor = "text-danger"; // Red color for rejected
+				        }
+				    %>
+				    <tr onclick="displayUserDetails('<%= username %>', '<%= noInvoice %>', <%= consumption %>, '<%=month%>');">
+				        <td><%= electricity.getUsername() %></td>
+				        <td><%= electricity.getMonth() %></td>
+				        <td class="<%= statusColor %>"><%= electricity.getStatus() %></td>
+				    </tr>
 			        <% } %>
                 </tbody>
               </table>
@@ -154,7 +132,7 @@
 
                   <!-- Actual image with click event to trigger lightbox -->
                   <img
-                    src="${pageContext.request.contextPath}/resources/img/bil_elektrik.png"
+                    src="${pageContext.request.contextPath}/resources/img/syabas.gif"
                     alt="Bill Image"
                     class="img-fluid"
                     style="max-height: 200px; cursor: pointer;"
@@ -199,7 +177,7 @@
       class="bg-dark text-white text-center py-3 mt-auto"
       style="background-color: #f96023 !important"
     >
-      <p>&copy; 2024 Your Company. All rights reserved.</p>
+      <p>&copy; 2024 SwiftCore. All rights reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -218,7 +196,7 @@
                     '<li class="list-group-item active">User Details</li>' +
                     '<li class="list-group-item">Username: ' + username + '</li>' +
                     '<li class="list-group-item">Invoice No: ' +  noInvoice + '</li>' +
-                    '<li class="list-group-item">Usage: ' + consumption + ' kWh</li>' +
+                    '<li class="list-group-item">Usage: ' + consumption + ' m3</li>' +
                   '</ul>' +
                 '</div>' +
                 '<div class="col-2">' +
@@ -229,7 +207,7 @@
                     'id="bill-lightbox-link"' +
                   '></a>' +
                   '<img ' +
-                    'src="${pageContext.request.contextPath}/resources/img/bil_elektrik.png" ' +
+                    'src="${pageContext.request.contextPath}/resources/img/syabas.gif" ' +
                     'alt="Bill Image" ' +
                     'class="img-fluid" ' +
                     'style="max-height: 200px; cursor: pointer;" ' +

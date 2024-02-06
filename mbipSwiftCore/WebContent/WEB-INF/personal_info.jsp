@@ -74,8 +74,6 @@
 
         Address: <input class="form-input" id="address" type="text" placeholder="address line 1 " name="address1" value="${user.getAddress()}" required >
 
-        <input class="form-input" id="address2" type="text" placeholder="address line 2 " name="address2">
-
         State: <input class="form-input" id="state-input" type="text" placeholder="state" name="state" value="${user.getState()}" required >
 
         Postcode: <input class="form-input" id="postcode-input" type="text" placeholder="postcode" name="postcode" value="${user.getPostcode()}" required >

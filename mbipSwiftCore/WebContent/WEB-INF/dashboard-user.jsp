@@ -15,7 +15,7 @@
   </head>
 
   <header
-    class="bg-dark text-white text-center py-3 d-flex justify-content-between align-items-center fixed-top"
+    class="bg-dark text-white text-center py-3 d-flex justify-content-between align-items-center"
     style="background-color: #41a0ff !important"
   >
     <div class="mr-1 col-1">
@@ -200,7 +200,7 @@
     </div>
 
     <footer class="bg-dark text-white text-center py-3">
-      <p>&copy; 2024 Your Company. All rights reserved.</p>
+      <p>&copy; 2024 SwiftCore. All rights reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

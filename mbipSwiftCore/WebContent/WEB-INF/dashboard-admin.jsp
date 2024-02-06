@@ -12,8 +12,8 @@
     class="bg-dark text-white text-center py-3 d-flex justify-content-between align-items-center"
     style="background-color: #f96023 !important"
   >
-    <div class="container text-end">
-      <a href="${pageContext.request.contextPath}/" class="btn btn-primary btn-lg text-white">Logout</a>
+    <div class="mr-1 col-1">
+      <a href="${pageContext.request.contextPath}/" class="btn btn-primary btn-lg text-white" style="background-color:orange; border:orange">Logout</a>
     </div>
     <div class="mr-1 col-1">
       <span id="usernamePlaceholder">Admin</span>
@@ -79,7 +79,6 @@
               <div class="card-body text-center" style="height: 150px">
                 <!-- Adjust the height as needed -->
                 <h5 class="card-title">Electricity</h5>
-                <i class="bi bi-lightning" style="font-size: 3rem; color: #007BFF;"></i>
               </div>
             </div>
           </a>
@@ -92,7 +91,6 @@
               <div class="card-body text-center" style="height: 150px">
                 <!-- Adjust the height as needed -->
                 <h5 class="card-title">Water</h5>
-                <i class="bi bi-droplet-fill" style="font-size: 3rem; color: #28A745;"></i>
               </div>
             </div>
           </a>
@@ -105,7 +103,6 @@
               <div class="card-body text-center" style="height: 150px">
                 <!-- Adjust the height as needed -->
                 <h5 class="card-title">Recycle</h5>
-                <i class="bi bi-trash" style="font-size: 3rem; color: #DC3545;"></i>
               </div>
             </div>
           </a>
@@ -117,7 +114,7 @@
       class="bg-dark text-white text-center py-3"
       style="background-color: #f96023 !important"
     >
-      <p>&copy; 2024 Your Company. All rights reserved.</p>
+      <p>&copy; 2024 SwiftCore. All rights reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -113,10 +113,11 @@ public class UserController {
 		User user = new User();
 		
 		user.setUsername(request.getParameter("username"));
+		session.setAttribute("username", user.getUsername());
 		
 		user.setPhoneNumber(request.getParameter("phoneNumber"));
 		
-		String address = request.getParameter("address1") + ", " +  request.getParameter("address2");
+		String address = request.getParameter("address1");
 		user.setAddress(address);
 		
 		user.setState(request.getParameter("state"));
@@ -138,7 +139,7 @@ public class UserController {
 		dashboardPage.addObject( "monthCarbonRecycle", monthCarbonRecycle);
 		
 //		dashboardPage.addObject("username" ,user.getUsername());
-		session.setAttribute("username", user.getUsername());
+		
 		
 		return dashboardPage;
 	}
