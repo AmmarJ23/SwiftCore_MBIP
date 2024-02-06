@@ -84,5 +84,17 @@ public class electricityDAO {
         List<Electricity> electricityList = jdbct.query(sql, new BeanPropertyRowMapper<>(Electricity.class));
         return electricityList;
     }
+	
+	public void approveForm(String username, String month) {
+	    String sql = "UPDATE `electricity_consumption` SET `status`='validated' WHERE `month`=? AND `username`=?";
+	    Object[] args = {month, username};
+	    jdbct.update(sql, args);
+	}
+
+	public void rejectForm(String username, String month) {
+	    String sql = "UPDATE `electricity_consumption` SET `status`='rejected' WHERE `month`=? AND `username`=?";
+	    Object[] args = {month, username};
+	    jdbct.update(sql, args);
+	}
 
 }

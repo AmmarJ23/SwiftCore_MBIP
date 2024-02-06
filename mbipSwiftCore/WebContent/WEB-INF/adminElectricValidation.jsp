@@ -116,8 +116,9 @@
                     	String username = electricity.getUsername();
                     	String noInvoice = electricity.getNoInvoice();
                     	Double consumption = electricity.getConsumption();
+                    	String month = electricity.getMonth();
                     %>
-			            <tr onclick="displayUserDetails('<%= username %>', '<%= noInvoice %>', <%= consumption %>);">
+			            <tr onclick="displayUserDetails('<%= username %>', '<%= noInvoice %>', <%= consumption %>, '<%=month%>');">
 						   <td><%= electricity.getUsername() %></td>
 						   <td><%= electricity.getMonth() %></td>
 						   <td><%= electricity.getStatus() %></td>
@@ -130,11 +131,11 @@
         </div>
 
         <!-- Second Card -->
-        <div class="col-md-6 mb-3">
+        <div  id="userDetailsCard" class="col-md-6 mb-3">
           <div class="card">
             <div class="card-body">
               <div class="row">
-                <div  id="userDetailsCard" class="col-10">
+                <div class="col-10">
                   <ul class="list-group">
                     <li class="list-group-item active">User Details</li>
                     <li class="list-group-item">Username:</li>
@@ -204,19 +205,73 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
   
-  <script>
-   function displayUserDetails(username, noInvoice, consumption) {
+<script>
+   function displayUserDetails(username, noInvoice, consumption, month) {
       // Update the content of the second card dynamically
       var userDetailsCard = document.getElementById('userDetailsCard');
       userDetailsCard.innerHTML =
-      '<ul class="list-group">' +
-      '<li class="list-group-item active">User Details</li>' +
-      '<li class="list-group-item">Username: ' + username + '</li>' +
-      '<li class="list-group-item">Invoice No: ' +  noInvoice + '</li>' +
-      '<li class="list-group-item">Usage: ' + consumption + ' kWh</li>' +
-      '</ul>' ;
+          '<div class="card">' +
+            '<div class="card-body">' +
+              '<div class="row">' +
+                '<div class="col-10">' +
+                  '<ul class="list-group">' +
+                    '<li class="list-group-item active">User Details</li>' +
+                    '<li class="list-group-item">Username: ' + username + '</li>' +
+                    '<li class="list-group-item">Invoice No: ' +  noInvoice + '</li>' +
+                    '<li class="list-group-item">Usage: ' + consumption + ' kWh</li>' +
+                  '</ul>' +
+                '</div>' +
+                '<div class="col-2">' +
+                  '<a ' +
+                    'href="img/bil_elektrik.png" ' +
+                    'data-lightbox="bill" ' +
+                    'style="display: none;" ' +
+                    'id="bill-lightbox-link"' +
+                  '></a>' +
+                  '<img ' +
+                    'src="${pageContext.request.contextPath}/resources/img/bil_elektrik.png" ' +
+                    'alt="Bill Image" ' +
+                    'class="img-fluid" ' +
+                    'style="max-height: 200px; cursor: pointer;" ' +
+                    'onclick="document.getElementById(\'bill-lightbox-link\').click();"' +
+                  '/>' +
+                '</div>' +
+              '</div>' +
+              '<div class="mt-3 text-center">' +
+                '<div class="gap-2">' +
+                  '<button ' +
+                    'type="button" ' +
+                    'class="btn btn-success" ' +
+                    'onclick="approveUserDetails(\'' + username + '\', \'' + month + '\');"  ' +
+                  '>' +
+                    'Approve' +
+                  '</button>' +
+                  '<button ' +
+                    'type="button" ' +
+                    'class="btn btn-danger" ' +
+                    'onclick="rejectUserDetails(\'' + username + '\', \'' + month + '\');"  ' +
+                  '>' +
+                    'Reject' +
+                  '</button>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
    }
+
+   function approveUserDetails(username, month) {
+	      // Redirect to the specified URL with parameters
+	      var redirectUrl = "${pageContext.request.contextPath}/admin/approveForm?username=" + username + "&month=" + month;
+	      window.location.href = redirectUrl;
+	   }
+
+   function rejectUserDetails(username, month) {
+	      // Redirect to the specified URL with parameters
+	      var redirectUrl = "${pageContext.request.contextPath}/admin/rejectForm?username=" + username + "&month=" + month;
+	      window.location.href = redirectUrl;
+	   }
 </script>
+
 
   
 </html>
