@@ -70,7 +70,7 @@
               <!-- Table -->
               <table class="table">
                 <thead>
-                  <tr>
+                  <tr style ="background-color: #d7d7d7">
                     <th scope="col">Username</th>
                     <th scope="col">Month</th>
                     <th scope="col">Status</th>

@@ -51,12 +51,12 @@
     <!-- Main Content Container with Shadow -->
     <div
       class="container shadow rounded-3 p-5 mt-3 mb-5"
-      style="height: 500px; width: 70%; background-color: #d7d7d7"
+      style="height: 400px; width: 70%; background-color: #d7d7d7"
     >
       <!-- Bootstrap Cards -->
       <div class="row">
         <h2 class="text-center mb-4">Form Submission Statistics</h2>
-      <table class="table table-bordered table-striped" style="margin: 0px 0px  70px 0px;">
+      <table class="table table-bordered table-striped" style="margin: 0px 0px  70px 0px; background-color: #fff">
         <thead>
           <tr>
             <th scope="col">Form Submitted</th>
@@ -76,7 +76,7 @@
         <div class="col-md-4 mb-3">
           <a href="${pageContext.request.contextPath}/admin/electricValidation" class="text-decoration-none">
             <div class="card w-100 mx-auto">
-              <div class="card-body text-center" style="height: 150px">
+              <div class="card-body text-center" style="height: 70px">
                 <!-- Adjust the height as needed -->
                 <h5 class="card-title">Electricity</h5>
               </div>
@@ -88,7 +88,7 @@
         <div class="col-md-4 mb-3">
           <a href="${pageContext.request.contextPath}/admin/waterValidation" class="text-decoration-none">
             <div class="card w-100 mx-auto">
-              <div class="card-body text-center" style="height: 150px">
+              <div class="card-body text-center" style="height: 70px">
                 <!-- Adjust the height as needed -->
                 <h5 class="card-title">Water</h5>
               </div>
@@ -100,7 +100,7 @@
         <div class="col-md-4 mb-3">
           <a href="${pageContext.request.contextPath}/admin/recycleValidation" class="text-decoration-none">
             <div class="card w-100 mx-auto">
-              <div class="card-body text-center" style="height: 150px">
+              <div class="card-body text-center" style="height: 70px">
                 <!-- Adjust the height as needed -->
                 <h5 class="card-title">Recycle</h5>
               </div>
